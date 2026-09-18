@@ -34,8 +34,9 @@ System-wide:
     sudo make install
 
 Either one also switches your desktop over: the Cinnamon theme, window borders,
-Chicago95 icons, the white cursor, `wallpaper.png` as the background, and the
-GTK4 stylesheet described below. The sound theme is left as it is. Log out and
+Chicago95 icons, the white cursor, `wallpaper.png` as the background, the Start
+button described below, and the GTK4 stylesheet described after it. The sound
+theme is left as it is. Log out and
 back in (or restart Cinnamon with **Ctrl+Alt+Esc**) if anything looks half
 applied, and restart open applications.
 
@@ -63,6 +64,28 @@ The originals are saved next to the files as `.bak`, and `sudo make uninstall`
 puts them back. The login screen changes at the next reboot; root applications
 change as soon as they are restarted. Mint's own greeter settings (background,
 clock, and so on) are left as they are.
+
+## The Start button
+
+The menu applet is set to the `start-here` icon from the Chicago95 icon theme —
+the Windows 95 flag — with the text **Start** beside it, at a 22px icon size to
+match the other panel applets. The label is bold, as it was in Windows 95; the
+rest of the panel's labels are not.
+
+The icon and the text are applet settings rather than theme properties, so they
+live in the applet's own config file, `~/.config/cinnamon/spices/menu@cinnamon.org/*.json`,
+and `apply-settings.sh` writes them there. The previous settings are saved
+alongside as `.bak`, and `make uninstall_user` puts just those keys back, so
+anything else you changed in the applet's settings meanwhile is kept.
+
+To change the icon or the wording, edit `MENUICON`, `MENULABEL` and
+`MENUICONSIZE` at the top of `apply-settings.sh`, or simply right-click the
+panel and use *Configure* — the theme does not overwrite it again until the
+next install.
+
+The bold label comes from `.menu-cinnamon-org-applet .applet-label` in
+`Theme/win95-rose-custom/cinnamon/cinnamon.css`. Cinnamon builds that class
+name from the applet's uuid, so the same trick targets any other applet.
 
 ## GTK4 and libadwaita applications
 

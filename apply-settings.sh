@@ -11,6 +11,64 @@ CSS="$HOME/.config/gtk-4.0/gtk.css"
 CURSOR=Chicago95_Cursor_White
 USERCURSOR="$HOME/.icons/default/index.theme"
 
+# The menu applet: the Start button. Its icon and text are applet settings
+# rather than theme properties, so they live in the applet's own config file.
+MENUDIR="$HOME/.config/cinnamon/spices/menu@cinnamon.org"
+MENUICON=start-here
+MENULABEL=Start
+MENUICONSIZE=22
+
+# Set or restore the menu applet's icon and label. The original values are kept
+# next to the config as .bak, and only those keys are put back on a reset, so
+# anything else changed in the applet's settings meanwhile is left alone.
+menu_button() {
+	[ -d "$MENUDIR" ] || return 0
+	if ! command -v python3 >/dev/null 2>&1; then
+		echo "python3 not found; set the menu icon and text by hand in the applet settings."
+		return 0
+	fi
+	python3 - "$1" "$MENUDIR" "$MENUICON" "$MENULABEL" "$MENUICONSIZE" <<'PYEOF'
+import glob, json, os, shutil, sys
+
+mode, confdir, icon, label, size = sys.argv[1:6]
+wanted = {"menu-custom": True, "menu-icon": icon,
+          "menu-label": label, "menu-icon-size": int(size)}
+changed = False
+
+for path in sorted(glob.glob(os.path.join(confdir, "*.json"))):
+    with open(path) as fh:
+        conf = json.load(fh)
+    # Not a menu applet instance we recognise; leave it untouched.
+    if not all(key in conf for key in wanted):
+        continue
+    bak = path + ".bak"
+
+    if mode == "reset":
+        if not os.path.exists(bak):
+            continue
+        with open(bak) as fh:
+            old = json.load(fh)
+        for key in wanted:
+            if key in old and "value" in old[key]:
+                conf[key]["value"] = old[key]["value"]
+    else:
+        if not os.path.exists(bak):
+            shutil.copy2(path, bak)
+        for key, value in wanted.items():
+            conf[key]["value"] = value
+
+    with open(path, "w") as fh:
+        json.dump(conf, fh, indent=4)
+    if mode == "reset":
+        os.remove(bak)
+    changed = True
+
+if changed:
+    print("Restored the menu button." if mode == "reset"
+          else "Set the menu button to the %s icon with the text %r." % (icon, label))
+PYEOF
+}
+
 # gsettings needs the session bus; under sudo it is not in the environment.
 if [ -z "${DBUS_SESSION_BUS_ADDRESS:-}" ] && [ -S "/run/user/$(id -u)/bus" ]; then
 	DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
@@ -42,6 +100,7 @@ if [ "${1:-}" = --reset ]; then
 		rm -f "$CSS"
 		[ -f "$CSS.bak" ] && mv "$CSS.bak" "$CSS"
 	fi
+	menu_button reset
 	echo "Restored the default Cinnamon theme."
 	exit 0
 fi
@@ -54,6 +113,8 @@ gsettings set org.cinnamon.desktop.interface gtk-theme "$THEME"
 gsettings set org.cinnamon.desktop.wm.preferences theme "$THEME"
 gsettings set org.cinnamon.desktop.interface icon-theme Chicago95
 gsettings set org.cinnamon.desktop.interface cursor-theme Chicago95_Cursor_White
+
+menu_button apply
 
 if [ -f "$wallpaper" ]; then
 	gsettings set org.cinnamon.desktop.background picture-uri "file://$wallpaper"

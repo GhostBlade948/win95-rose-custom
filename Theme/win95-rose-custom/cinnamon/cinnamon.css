@@ -1410,6 +1410,15 @@ StScrollBar StButton#hhandle {
   .applet-label:hover {
     font-weight: normal; }
 
+/* The Start button's text is bold, unlike the other applet labels. Cinnamon
+   gives each applet a style class made from its uuid, so this reaches the
+   menu applet alone. apply-settings.sh sets the icon and the text itself. */
+.menu-cinnamon-org-applet .applet-label {
+  font-weight: bold; }
+  .menu-cinnamon-org-applet .applet-label:checked,
+  .menu-cinnamon-org-applet .applet-label:hover {
+    font-weight: bold; }
+
 .applet-icon {
   icon-size: 22px; }
   .applet-icon:hover,
