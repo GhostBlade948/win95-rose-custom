@@ -1,0 +1,2454 @@
+/* ###################################################################
+ * Cinnamon theme based on Mint-X
+ * By EMH-Mark-I
+ * ###################################################################*/
+
+/* ###################################################################
+ * Section common with Gnome Shell
+ * ... contains a few cinnamon specific styles (rare occurences)
+ * ###################################################################*/
+stage {
+  font-family: Ubuntu;
+  font-size: 10pt; }
+
+.cinnamon-link {
+  color: #000080;
+  text-decoration: underline; }
+
+.cinnamon-link:hover {
+  text-shadow: 1px 1px #ffffff; }
+
+StScrollBar {
+  padding: 0px; }
+
+StScrollView.vfade {
+  -st-vfade-offset: 0px; }
+
+StScrollView StScrollBar {
+  min-width: 16px;
+  min-height: 16px; }
+
+StScrollBar StBin#trough {
+  background-color: #ffffff;
+  background-image: url("scrollbar/checker-board-pattern.png");
+  background-repeat: repeat; }
+
+StScrollBar StButton#vhandle {
+  background-color: #c0c0c0;
+  border-image: url("scrollbar/scrollbar_button.png") 6; }
+
+StScrollBar StButton#hhandle {
+  background-color: #c0c0c0;
+  border-image: url("scrollbar/scrollbar_button.png") 6; }
+
+#Tooltip {
+  border-radius: 0px;
+  padding: 2px 6px;
+  border: 1px solid black;
+  color: black;
+  background-color: #ffffe1;
+  font-size: 10pt;
+  font-weight: normal;
+  text-align: center; }
+
+/* ===================================================================
+ * Switches (to be used in menus)
+ * ===================================================================*/
+.toggle-switch {
+  width: 16px;
+  height: 16px; }
+
+.toggle-switch-us {
+  border-image: url("control-assets/switch-off.png") 6; }
+  .toggle-switch-us:checked {
+    border-image: url("control-assets/switch-on.png") 6; }
+
+.toggle-switch-intl {
+  border-image: url("control-assets/switch-off.png") 6; }
+  .toggle-switch-intl:checked {
+    border-image: url("control-assets/switch-on.png") 6; }
+
+/* ===================================================================
+ * Shared button properties
+ * ===================================================================*/
+.notification-button,
+.notification-icon-button {
+  color: #808080;
+  border-image: url("button-assets/button.png") 6;
+  font-size: 8.5pt;
+  font-weight: normal;
+  text-align: center; }
+  .notification-button:hover,
+  .notification-icon-button:hover {
+    color: black;
+    border-image: url("button-assets/button-hover.png") 6; }
+  .notification-button:focus,
+  .notification-icon-button:focus {
+    border-image: url("button-assets/button-focus.png") 6; }
+  .notification-button:active,
+  .notification-icon-button:active {
+    border-image: url("button-assets/button-pressed.png") 6; }
+  .notification-button:focus:hover,
+  .notification-icon-button:focus:hover,
+  .modal-dialog-button:focus:hover {
+    border-image: url("button-assets/button-focus-hover.png") 6; }
+  .notification-button:focus:checked,
+  .notification-button:focus:active,
+  .notification-icon-button:focus:checked,
+  .notification-icon-button:focus:active {
+    border-image: url("button-assets/button-pressed.png") 6; }
+
+/* ===================================================================
+ * PopupMenu (popupMenu.js)
+ * ===================================================================*/
+
+.menu {
+  padding: 0px;
+  background-color: #c0c0c0;
+  color: black;
+  border: 2px solid transparent;
+  border-image: url("background-assets/menu.png") 6;
+  border-radius: 0px; }
+
+.menu StEntry {
+  margin-top: 4px;
+  padding: 2px;
+  color: black;
+  border-radius: 0px;
+  width: 250px;
+  min-height: 16px;
+  border-image: url("misc-assets/entry.png") 6;
+  background-color: white;
+  selected-color: white;
+  caret-color: black;
+  caret-size: 1px;
+  selection-background-color: #000080;
+  transition-duration: 150; }
+
+.popup-submenu-menu-item:open {}
+
+.popup-sub-menu {
+  border-image: url("background-assets/sub-menu.png") 6;
+  border: 2px solid transparent;
+  padding: 0px; }
+
+/*
+.popup-sub-menu .popup-menu-item:ltr {
+  padding-right: 1.75em;
+}
+
+.popup-sub-menu .popup-menu-item:rtl {
+  padding-left: 1.75em;
+}
+
+.popup-sub-menu StScrollBar {
+  padding: 4px;
+}
+
+.popup-sub-menu StScrollBar StBin#trough {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.popup-sub-menu StScrollBar StBin#vhandle {
+  background-color: rgb(216, 216, 216);
+  border: 1px solid #949494;
+}*/
+
+.popup-combo-menu {
+  background-color: #c0c0c0;
+  padding: 0px;
+  color: black;
+  border-image: url("background-assets/sub-menu.png") 6;
+  border-radius: 0px; }
+
+.popup-menu-content {
+  padding: 0px; }
+
+.popup-menu-item {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  padding-left: 8px;
+  spacing: 4px; }
+  .popup-menu-item:active {
+    background-color: #000080;
+    color: #ffffff; }
+  .popup-menu-item:insensitive {
+    color: rgb(140, 140, 140); }
+
+.popup-combobox-item {
+  spacing: 1em; }
+
+.popup-separator-menu-item {
+  border-image: url("Handles/handle-h.png") 4;
+  height: 2px; }
+  .popup-alternating-menu-item:alternate {
+    font-weight: bold;
+    color: black; }
+
+/* TODO: Would like to find a way to use a custom handle instead of the round circle. */
+.popup-slider-menu-item {
+  border-image: url("misc-assets/slider.png") 4;
+  height: 18px;
+  min-width: 15em;
+  -slider-handle-radius: 6px; }
+
+.popup-device-menu-item {
+  spacing: .5em; }
+
+.popup-inactive-menu-item {
+  font-weight: bold;
+  color: black; }
+
+.popup-subtitle-menu-item {
+  font-weight: bold;
+  color: black; }
+
+.popup-menu-icon {
+  icon-size: 1em; }
+
+.nm-menu-item-icons {
+  spacing: .5em; }
+
+/* ===================================================================
+ * Panel (panel.js)
+ * ===================================================================*/
+#panel {
+  color: black;
+  font-size: 10pt;
+  height: 26px;
+  width: 32px;
+  padding: 0px; }
+
+/*
+#panel:highlight {
+    background-color: #accd8a;
+}*/
+
+.panel-dummy {
+  border: 1px solid rgba(0, 0, 128, 1.0);
+  background-color: rgba(0, 0, 128, 0.6); }
+
+.panel-dummy:entered {
+  background-color: rgba(0, 0, 128, 0.9); }
+
+#panelLeft,
+#panelCenter {
+  spacing: 4px; }
+
+.panel-left #panelLeft,
+.panel-left #panelRight,
+.panel-left #panelCenter,
+.panel-right #panelLeft,
+.panel-right #panelRight,
+.panel-right #panelCenter {
+  spacing: 0; }
+
+#panelLeft:dnd {
+  background-color: #c0c0c0; }
+
+#panelCenter:dnd {
+  background-color: #c0c0c0;
+}
+
+#panelRight:dnd {
+  background-color: #c0c0c0;
+}
+
+#panelLeft:ltr {
+  padding-right: 4px;
+}
+
+#panelLeft:rtl {
+  padding-left: 4px;
+}
+
+#panelRight:ltr {
+  padding-left: 0px;
+  spacing: 0px;
+}
+
+#panelRight:rtl {
+  padding-right: 0px;
+  spacing: 0px;
+}
+
+#panelLeft.vertical:ltr {
+  padding-right: 0px;
+}
+
+#panelLeft.vertical:rtl {
+  padding-left: 0px;
+}
+
+.panel-top,
+.panel-bottom,
+.panel-left,
+.panel-right {
+  background-color: #c0c0c0; }
+  .panel-top {
+    border-image: url("panel/panel-top.png") 4; }
+  .panel-bottom {
+    border-image: url("panel/panel-bottom.png") 4; }
+  .panel-left {
+    border-image: url("panel/panel-left.png") 4; }
+  .panel-right {
+    border-image: url("panel/panel-right.png") 4; }
+
+.system-status-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+  spacing: 0px;
+  margin: 0px;
+}
+
+.system-status-icon.warning {
+  color: #d2aa1e;
+}
+
+.system-status-icon.error {
+  color: #d54444;
+}
+
+#appMenu {
+  spacing: 4px;
+}
+
+.popup-menu-item-dot {
+}
+
+.system-status-icon {
+  icon-size: 1.14em;
+}
+
+/* ===================================================================
+ * Overview (workspace.js)
+ * ===================================================================*/
+#overview {
+  spacing: 12px; }
+
+.workspace-thumbnails {
+  spacing: 26px;
+  padding-left: 0.9em;
+  padding-right: 1em; }
+
+.workspace-add-button {
+  background-image: url("misc-assets/plus.png");
+  background-color: #c0c0c0;
+  border-image: url("button-assets/button.png") 6;
+  height: 150px;
+  width: 35px; }
+
+.workspace-add-button:active {
+  background-image: url("misc-assets/plus-pressed.png");
+  border-image: url("button-assets/button-pressed.png") 6;}
+
+.workspace-close-button {
+  padding: 0px;
+  background-image: url("control-assets/close_normal.png");
+  height: 18px;
+  width: 18px;
+  -cinnamon-close-overlap: 15px;
+  transition-duration: 150; }
+  .workspace-close-button:active {
+    background-image: url("control-assets/close_pressed.png");
+    transition-duration: 150; }
+
+.window-border {
+  border: 0px #accd8a;
+  background-color: rgba(255,255,255,.05); }
+
+.window-caption {
+  border-image: url("background-assets/bg-1.png") 6;
+  font-size: 9pt;
+  font-weight: bold;
+  padding: 6px 8px;
+  spacing: 8px;
+  color: rgb(70, 70, 70);
+  -cinnamon-caption-spacing: 10px; }
+
+.window-caption:focus {
+  border-image: url("background-assets/bg-2.png") 6;
+  color: #fff; }
+
+.window-close {
+  background-image: url("control-assets/close_normal.png");
+  height: 35px;
+  width: 35px;
+  -cinnamon-close-overlap: 16px;
+  transition-duration: 150; }
+
+.window-close:active {
+  background-image: url("control-assets/close_pressed.png");
+  transition-duration: 150; }
+
+.window-close-area {
+  background-image: url("misc-assets/trash.png");
+  height: 150px;
+  width: 226px; }
+
+.expo-background {
+  background-image: url("background-assets/flying_toasters.png");
+  background-repeat: repeat; }
+
+.workspace-overview-background-shade {
+  background-color: rgba(0, 0, 0, .4); }
+
+.overview-empty-placeholder {
+  color: #ffffff;
+  font-size: 2em; }
+
+.expo-workspace-thumbnail-frame {
+  border: 4px transparent;
+  border-image: url("frame/frame.png") 6;
+  box-shadow: inset 1px 1px #c0c0c0, inset -1px -1px #c0c0c0; }
+  .expo-workspace-thumbnail-frame#active {
+  box-shadow: inset 1px 1px #000080, inset -1px -1px #000080; }
+
+/* ===================================================================
+* Desklets (desklet.js)
+* ===================================================================*/
+.desklet {
+  color: black;
+}
+
+.desklet:highlight,
+.desklet-with-borders:highlight,
+.desklet-with-borders-and-header:highlight {
+  background-color: #c0c0c0;
+}
+
+.desklet-with-borders {
+  border-image: url("background-assets/bg-1.png") 6;
+  color: black;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.desklet-with-borders-and-header {
+  border-image: url("background-assets/desklet.png") 6;
+  color: rgb(70, 70, 70);
+  padding: 8px;
+}
+
+.desklet-header {
+  border-image: url("background-assets/header.png") 8;
+  font-size: 9pt;
+  font-weight: bold;
+  text-shadow: #eee 0px 0px 0px;
+  color: rgb(70, 70, 70);
+  padding: 8px;
+}
+
+.desklet-drag-placeholder {
+  border: 0px solid #ccc;
+  border-radius: 0px;
+  background: none;
+}
+
+.xkcd-box {
+  padding: 6px;
+  border: 0px solid #808080;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+.photoframe-box {
+  padding: 10px;
+  border-image: url("background-assets/menu.png") 6;
+}
+
+/* ===================================================================
+ * Clock Desklet (clock@cinnamon.org/desklet.js)
+ * ===================================================================*/
+.clock-desklet-label {
+  color: black;
+}
+
+/* ===================================================================
+ * Looking Glass (lookingGlass.js)
+ * ===================================================================*/
+#LookingGlassDialog {
+  border-image: url("background-assets/menu.png") 6;
+  transition-duration: 300;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: black;
+}
+
+/* ===================================================================
+ * Date applet (calendar@cinnamon.org/calendar.js)
+ * ===================================================================*/
+.calendar {
+  padding: .4em 1.75em .8em 1.75em;
+  spacing-rows: 0;
+  spacing-columns: 0; }
+
+.datemenu-date-label {
+  padding: .5em 0em 1em 0em;
+  font-weight: bold;
+  text-align: center;
+  color: black; }
+
+.calendar-month-label {
+  padding-bottom: 3px;
+  padding-top: 3px;
+  font-weight: bold;
+  color: black; }
+
+.calendar-change-month-back,
+.calendar-change-month-forward:rtl {
+  height: 20px;
+  width: 20px;
+  transition-duration: 200;
+  border-image: url("panel-assets/button.png") 6;
+  background-image: url("control-assets/calendar-arrow-left.png"); }
+  .calendar-change-month-back:hover {
+    transition-duration: 150;
+    background-image: url("control-assets/calendar-arrow-left-hover.png"); }
+.calendar-change-month-forward,
+.calendar-change-month-back:rtl {
+  height: 20px;
+  width: 20px;
+  transition-duration: 200;
+  border-image: url("panel-assets/button.png") 6;
+  background-image: url("control-assets/calendar-arrow-right.png"); }
+  .calendar-change-month-forward:hover {
+    transition-duration: 150;
+    background-image: url("control-assets/calendar-arrow-right-hover.png"); }
+.calendar-change-month-back:active,
+.calendar-change-month-forward:active {
+  border-image: url("panel-assets/pressed.png") 6; }
+
+.calendar-day-base {
+  font-size: 9pt;
+  text-align: center;
+  width: 2.4em;
+  height: 2.4em; }
+  .calendar-day-base:active {
+    background: #000080;
+    color: #ffffff; }
+
+.calendar-day-heading {
+  font-size: 9pt;
+  color: black;
+  padding-top: 2em; }
+
+.calendar-week-number {
+  color: black;
+  font-size: 9pt; }
+
+.calendar-day {
+  border: 1px rgba(0, 0, 0, 0.2);
+  color: black;
+  border-top-width: 0;
+  border-left-width: 0;
+  padding-left: 1px;
+  padding-top: 1px;
+  background-color: rgba(255, 255, 255, 0.1); }
+
+.calendar-day-top {
+  border-top-width: 1px; }
+
+.calendar-day-left {
+  border-left-width: 1px; }
+
+.calendar-work-day {}
+
+.calendar-nonwork-day {
+  background-color: rgba(128, 128, 128, 0.1); }
+
+.calendar-today {
+  color: #000080;
+  font-weight: bold;
+  background-color: white; }
+
+.calendar-other-month-day {
+  color: rgba(50, 50, 50, 0.3);
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.1); }
+
+/* ===================================================================
+ * Notifications (messageTray.js)
+ * ===================================================================*/
+#notification {
+  font-size: 8.5pt;
+  border-image: url("background-assets/bg-1.png") 6;
+  padding: 8px 8px 8px 8px;
+  spacing-rows: 10px;
+  spacing-columns: 10px;
+  margin-from-right-edge-of-screen: 20px;
+  width: 34em;
+  color: black; }
+  #notification.multi-line-notification {
+    padding-bottom: 8px;
+    color: black; }
+
+/* We use row-span = 2 for the image cell, which prevents its height preferences to be
+   taken into account during allocation, so its height ends up being limited by the height
+   of the content in the other rows. To avoid showing a stretched image, we set the minimum
+   height of the table to be ICON_SIZE + IMAGE_SIZE + spacing-rows = 24 + 125 + 10 = 159 */
+.notification-with-image {
+  min-height: 159px;
+  color: black; }
+
+#notification-scrollview {
+  max-height: 100em; }
+
+#notification-scrollview > .top-shadow,
+#notification-scrollview > .bottom-shadow {
+  height: 10em; }
+
+#notification-scrollview:ltr > StScrollBar {
+  padding-left: 6px; }
+
+#notification-scrollview:rtl > StScrollBar {
+  padding-right: 6px; }
+
+#notification-body {
+  spacing: 5px; }
+
+#notification-actions {
+  spacing: 10px; }
+
+.notification-button {
+  border-image: url("button-assets/button.png") 6;
+  min-width: 5em;
+  font-size: 10pt;
+  padding: 5px; }
+  .notification-button:focus {
+    padding: 4px; }
+
+#notification .cinnamon-link {
+  color: rgb(0, 0, 0);
+  text-decoration: underline; }
+
+.notification-icon-button {
+  border-image: url("button-assets/button.png") 6;
+  border-radius: 0px;
+  padding: 5px; }
+  .notification-icon-button:focus {
+    padding: 4px; }
+
+.notification-icon-button > StIcon {
+  icon-size: 36px; }
+
+#notification StEntry {
+  padding: 4px 12px;
+  color: black;
+  border-image: url("misc-assets/entry.png") 6;
+  caret-color: black;
+  caret-size: 1px;
+  width: 250px;
+  height: 16px;
+  transition-duration: 300;
+  selected-color: #fff;
+  selection-background-color: #000080; }
+  #notification StEntry:focus {
+    border-image: url("misc-assets/entry.png") 6;
+    transition-duration: 150; }
+
+/* For the links inside notifications.
+   These URLs are already underlined with Pango markup. */
+#notification .url-highlighter {
+    link-color: #000080; }
+
+/* ===================================================================
+ * Alt Tab (appSwitcher/classicSwitcher.js)
+ * ===================================================================*/
+#altTabPopup {
+  padding: 8px;
+  spacing: 16px; }
+
+.switcher-list {
+  border-image: url("background-assets/menu.png") 6;
+  color: black;
+  padding: 20px;
+  font-size: 9pt; }
+
+.switcher-list-item-container {
+  spacing: 8px; }
+
+.thumbnail-scroll-gradient-left {
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius-topright: 0px;
+  border-radius-bottomright: 0px;
+  width: 60px; }
+
+.thumbnail-scroll-gradient-right {
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius-topleft: 0px;
+  border-radius-bottomleft: 0px;
+  width: 60px; }
+
+.switcher-list .item-box {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 0px; }
+  .switcher-list .item-box:outlined {
+    padding: 6px;
+    border: 2px solid rgba(85, 85, 85, 0); }
+  .switcher-list .item-box:selected {
+    background-color: #000080;
+    color: #ffffff; }
+
+.switcher-list .thumbnail-box {
+  padding: 2px;
+  spacing: 4px; }
+
+.switcher-list .thumbnail {
+  width: 256px; }
+
+.switcher-list .separator {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.33); }
+
+.ripple-box {
+  width: 104px;
+  height: 104px;
+  background-image: url("misc-assets/corner-ripple.png"); }
+  .ripple-box:rtl {
+    background-image: url("misc-assets/corner-ripple.png"); }
+
+.switcher-arrow {
+  border-color: rgba(0, 0, 0, 0);
+  color: #dcdcdc; }
+  .switcher-arrow:highlighted {
+    border-color: rgba(0, 0, 0, 0);
+    color: white; }
+
+.switcher-preview-backdrop {
+  background-color: #c0c0c0; }
+
+/* ===================================================================
+ * Modal dialogs (modalDialog.js)
+ * ===================================================================*/
+.modal-dialog {
+  font-size: 10pt;
+  border-image: url("background-assets/menu.png") 6;
+  color: rgb(70, 70, 70);
+  padding: 20px; }
+
+.modal-dialog-button-box {
+  spacing: 110px;
+  padding-top: 20px; }
+
+.modal-dialog-button {
+  height: 22px;
+  font-size: 10pt;
+  color: black;
+  border-image: url("button-assets/button.png") 6;
+  padding: 3px 31px 4px; }
+  .modal-dialog-button:hover {
+    border-image: url("button-assets/button-hover.png") 6; }
+  .modal-dialog-button:focus {
+    border-image: url("button-assets/button-focus.png") 6;
+    padding: 3px 31px 4px; }
+  .modal-dialog-button:active,
+  .modal-dialog-button:checked {
+    border-image: url("button-assets/button-pressed.png") 6; }
+  .modal-dialog-button:focus:hover {
+    border-image: url("button-assets/button-focus-hover.png") 6;
+    padding: 3px 31px 4px; }
+  .modal-dialog-button:focus:checked,
+  .modal-dialog-button:focus:active {
+    border-image: url("button-assets/button-pressed.png") 6; }
+  .modal-dialog-button:disabled {
+    color: #808080;
+    text-shadow: 1px 1px #ffffff; }
+
+/* ===================================================================
+ * Run dialog (runDialog.js)
+ * ===================================================================*/
+.run-dialog-label {
+/*font-size: 0pt;*/
+  padding-bottom: 0px;
+  color: rgba(0, 0, 0, 0);
+  font-weight: bold; }
+
+.run-dialog-error-label {
+}
+
+.run-dialog-error-box {
+  padding-top: 15px;
+  spacing: 5px; }
+
+.run-dialog-entry,
+.run-dialog-entry:focus {
+  padding: 2px;
+  color: black;
+  border: 1px solid #808080;
+  background-color: white;
+  caret-color: black;
+  caret-size: 1px;
+  width: 250px;
+  height: 16px;
+  transition-duration: 300;
+  selected-color: #ffffff;
+  selection-background-color: #000080; }
+
+.run-dialog-completion-box {
+  padding-left: 15px;
+  font-size: 10px; }
+
+.run-dialog {
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-bottom: 0;
+  padding-top: 20px; }
+
+/* This can shade the background when the run dialog box is active. */
+.lightbox {
+  background-color: rgba(128, 128, 128, 0.5); }
+
+/* =============================================================================
+ * CinnamonMountOperation Dialogs (cinnamonMountOperation.js)
+ * ============================================================================= */
+
+.cinnamon-mount-operation-icon {
+  icon-size: 48px; }
+
+.mount-password-reask {
+  color: red; }
+
+.show-processes-dialog,
+.mount-question-dialog {
+  spacing: 24px; }
+
+.show-processes-dialog-subject,
+.mount-question-dialog-subject {
+  font-size: 12pt;
+  font-weight: bold;
+  color: black;
+  padding-top: 10px;
+  padding-left: 17px;
+  padding-bottom: 6px; }
+  .show-processes-dialog-subject:rtl,
+  .mount-question-dialog-subject:rtl {
+    padding-left: 0px;
+    padding-right: 17px; }
+
+.show-processes-dialog-description,
+.mount-question-dialog-description {
+  font-size: 10pt;
+  color: black;
+  padding-left: 17px;
+  width: 28em; }
+  .show-processes-dialog-description:rtl,
+  .mount-question-dialog-description:rtl {
+    padding-right: 17px; }
+
+.show-processes-dialog-app-list {
+  font-size: 10pt;
+  max-height: 200px;
+  padding-top: 24px;
+  padding-left: 49px;
+  padding-right: 32px; }
+  .show-processes-dialog-app-list:rtl {
+    padding-right: 49px;
+    padding-left: 32px; }
+
+.show-processes-dialog-app-list-item {
+  color: black; }
+  .show-processes-dialog-app-list-item:hover {
+    color: rgb(120, 120, 120); }
+  .show-processes-dialog-app-list-item:ltr {
+    padding-right: 1em; }
+  .show-processes-dialog-app-list-item:rtl {
+    padding-left: 1em; }
+
+.show-processes-dialog-app-list-item-icon:ltr {
+  padding-right: 17px; }
+.show-processes-dialog-app-list-item-icon:rtl {
+  padding-left: 17px; }
+
+.show-processes-dialog-app-list-item-name {
+  font-size: 10pt; }
+
+/* ===================================================================
+ * Magnifier (magnifier.js)
+ * ===================================================================*/
+.magnifier-zoom-region {
+  border: 2px solid rgba(128, 0, 0, 1); }
+
+.magnifier-zoom-region.full-screen {
+  border-width: 0px; }
+
+/* ===================================================================
+ * On screen keyboard (keyboard.js)
+ * ===================================================================*/
+#keyboard {
+  border-image: url("background-assets/keyboard-bg.png") 4; }
+
+.keyboard-layout {
+  spacing: 10px;
+  padding: 10px; }
+
+.keyboard-row {
+  spacing: 15px; }
+
+.keyboard-key {
+  min-height: 30px;
+  min-width: 30px;
+  border-image: url("button-assets/button.png") 4;
+  font-size: 14pt;
+  font-weight: bold;
+  color: rgb(70, 70, 70); }
+
+.keyboard-key:grayed {
+  color: black;
+  border-image: url("button-assets/button.png") 4; }
+  .keyboard-key:checked,
+  .keyboard-key:hover {
+    border-image: url("button-assets/button-hover.png") 4; }
+  .keyboard-key:active {
+    border-image: url("button-assets/button-pressed.png") 4; }
+
+.keyboard-subkeys {
+  color: rgb(70, 70, 70);
+  padding: 5px;
+  -arrow-border-radius: 4px;
+  -arrow-background-color: #ffffe1;
+  -arrow-border-width: 1px;
+  -arrow-border-color: rgba(49, 49, 49, 0.4);
+  -arrow-base: 18px;
+  -arrow-rise: 10px;
+  -st-shadow: 0px -1px 2px 0px rgba(255, 255, 255, 0.9);
+  -boxpointer-gap: 2px; }
+
+/* ###################################################################
+ * Cinnamon Specific Section
+ * ###################################################################*/
+
+/* ===================================================================
+ * Menu applet (menu@cinnamon.org/applet.js)
+ * ===================================================================*/
+
+/* Main menu title */
+
+.menu-favorites-box {
+  background-color: #c0c0c0;
+  border-image: url("misc-assets/border-frame.png") 4;
+  padding: 0.5em; }
+
+.menu-favorites-button {
+  padding: 4px; }
+  .menu-favorites-button:hover {
+    background-color: #000080; }
+
+.menu-categories-box {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+.menu-applications-outer-box {}
+
+.menu-applications-inner-box {
+  margin: 8px;
+  border: 2px solid #808080;
+  border-image: url("frame/frame_menu.png") 6;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  background-color: white; }
+
+.menu-application-button {
+  padding: 4px;
+  max-width: 10px; }
+  .menu-application-button:highlighted {
+    /* This style is used in menu application buttons for applications which were newly installed */
+    font-weight: bold; }
+
+.menu-application-button-selected {
+  padding: 4px;
+  color: #fff;
+  background-color: #000080; }
+  .menu-application-button-selected:highlighted {
+    /* This style is used in menu application buttons for applications which were newly installed */
+    font-weight: bold; }
+
+.menu-application-button-label:ltr {
+  padding-left: 5px; }
+.menu-application-button-label:rtl {
+  padding-right: 5px; }
+
+.menu-category-button {
+  padding: 4px; }
+
+.menu-category-button-greyed {
+  padding: 4px;
+  color: #808080;
+  text-shadow: 1px 1px #ffffff;
+  font-style: italic; }
+
+.menu-category-button-selected {
+  padding: 4px;
+  color: #fff;
+  background-color: #000080; }
+
+.menu-category-button-label:ltr {
+  padding-left: 5px; }
+.menu-category-button-label:rtl {
+  padding-right: 5px; }
+
+/* Name and description of the currently hovered item in the menu
+ * This appears on the bottom right hand corner of the menu*/
+.menu-selected-app-box {
+  padding-right: 30px;
+  padding-left: 28px;
+  margin-bottom: 4px;
+  text-align: right; }
+
+.menu-selected-app-title {
+  font-weight: bold; }
+
+.menu-selected-app-description {
+  max-width: 150px; }
+
+.menu-search-box {
+  padding-left: 30px; }
+
+.menu-search-entry-icon {
+  icon-size: 1em;
+  color: black; }
+
+.menu-context-menu {}
+
+/* ===================================================================
+ * Window list applet (window-list@cinnamon.org/applet.js)
+ * ===================================================================*/
+.window-list-box {
+  spacing: 3px;
+  padding-left: 0px; }
+
+.window-list-box.vertical {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+  .window-list-box.vertical .window-list-item-box {
+    padding-top: 4px;
+    padding-bottom: 4px; }
+
+.panel-top .window-list-item-box,
+.panel-bottom .window-list-item-box {
+  font-weight: normal;
+  color: black;
+  padding-top: 1px;
+  padding-left: 8px;
+  padding-right: 4px;
+  border-image: url("panel-assets/button.png") 6; }
+  .panel-left .window-list-item-box,
+  .panel-right .window-list-item-box {
+    border-image: url("panel-assets/button.png") 6; }
+
+/* TODO: Need a checker style background for selected window list buttons */
+.window-list-item-box:active,
+.window-list-item-box:checked,
+.window-list-item-box:focus,
+.window-list-item-box:checked:hover,
+.window-list-item-box:focus:hover,
+.window-list-item-box:active:hover {
+  font-weight: bold;
+  color: black;
+  border-image: url("panel-assets/button_selected.png") 6; }
+
+.window-list-item-demands-attention {
+  border-image: url("panel-assets/button_attention.png") 6; }
+
+/*
+.window-list-item-box .progress {
+  border-image: url("panel-assets/progress.svg") 6; }*/
+
+.window-list-preview {
+  border-image: url("background-assets/menu.png") 6;
+  color: black;
+  padding: 6px 12px 12px 12px;
+  font-size: 1em; }
+
+.window-list-item-label {
+  width: 15em;
+  min-width: 5px; }
+
+/* ===================================================================
+ * Grouped window list (grouped-window-list@cinnamon.org)
+ * ===================================================================*/
+
+.grouped-window-list-thumbnail-label {
+  padding-left: 4px; }
+
+.grouped-window-list-number-label {
+  z-index: 99;
+  color: rgb(70, 70, 70); }
+
+.grouped-window-list-badge {
+  background-color: white; }
+
+.grouped-window-list-button-label {
+  padding-left: 4px; }
+
+.grouped-window-list-thumbnail-alert {
+  background: rgba(255,52,52,0.3); }
+
+.grouped-window-list-item-box {
+  text-align: left;
+  font-weight: bold;
+  color: rgb(62, 62, 62);
+  padding-top: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-image: none;
+}
+
+.panel-left .grouped-window-list-item-box,
+.panel-right .grouped-window-list-item-box {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.grouped-window-list-item-box:active,
+.grouped-window-list-item-box:active:hover,
+.grouped-window-list-item-box:checked,
+.grouped-window-list-item-box:checked:hover,
+.grouped-window-list-item-box:hover {
+  border-image: url("panel-assets/hover-1.png") 6;
+}
+
+.grouped-window-list-item-box:focus,
+.grouped-window-list-item-box:focus:hover,
+.grouped-window-list-item-box:focus:active:hover {
+  font-weight: bold;
+  color: #fff;
+  border-image: url("panel-assets/pressed.png") 6;
+}
+
+
+.grouped-window-list-item-demands-attention {
+  border-image: url("panel-assets/button_attention.png") 6;
+}
+
+/*
+.grouped-window-list-item-box .progress {
+  border-image: url("panel-assets/progress.svg") 6;
+}
+
+.panel-top .grouped-window-list-item-box .progress {
+  border-image: url("panel-assets/progress-top.svg") 6;
+}
+
+.panel-left .grouped-window-list-item-box .progress {
+  border-image: url("panel-assets/progress-left.svg") 6;
+}
+
+.panel-right .grouped-window-list-item-box .progress {
+  border-image: url("panel-assets/progress-right.svg") 6;
+}*/
+
+.grouped-window-list-thumbnail-menu {
+  color: rgb(70, 70, 70);
+  padding: 0px;
+  font-size: 9pt;
+  font-weight: bold;
+}
+
+.grouped-window-list-thumbnail-menu .item-box {
+  padding: 10px;
+  border: 1px solid transparent;
+  spacing: 4px;
+}
+
+.grouped-window-list-thumbnail-menu .item-box:outlined {
+  padding: 6px;
+  border: 2px solid rgba(85, 85, 85, 0);
+}
+
+.grouped-window-list-thumbnail-menu .item-box:selected {
+  background-color: #000080;
+  color: #fff;
+}
+
+.grouped-window-list-thumbnail-menu .thumbnail {
+  width: 256px;
+}
+
+.grouped-window-list-thumbnail-menu .separator {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.33);
+}
+
+/* ===================================================================
+ * Sound applet (sound@cinnamon.org/applet.js)
+ * ===================================================================*/
+.sound-player StButton {
+  border: 1px solid transparent;
+  width: 22px;
+  height: 22px;
+  padding: 5px;
+  color: #808080; }
+
+.sound-player StButton:small {
+  border: 1px solid transparent;
+  width: 16px;
+  height: 16px; }
+
+.sound-player StButton:hover,
+.sound-player StButton:active {
+  border: 1px solid #808080;
+  color: black; }
+
+.sound-player StButton:small:hover {
+  color: black;
+  border-image: url("button-assets/button-hover.png") 6; }
+
+.sound-player StButton:small:active {
+  color: rgb(70, 70, 70);
+  border-image: url("button-assets/button-pressed.png") 6; }
+
+.sound-player .slider {
+  height: 0.5em;
+  -slider-height: 0.5em;
+  -slider-background-color: #c0c0c0;
+  -slider-border-color: black;
+  -slider-active-background-color: #000080;
+  -slider-active-border-color: black;
+  -slider-border-width: 1px;
+  -slider-handle-radius: 4px;
+  color: white;
+  border: 1px solid #808080;
+}
+
+.sound-player StBoxLayout {
+  spacing: 0.5em;
+}
+
+.sound-player > StBoxLayout {
+  padding: 0 16px 8px;
+}
+
+.sound-player > StBoxLayout:first-child {
+  border: 1px solid #c2c2c2;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+
+.sound-player-overlay {
+  border-top: 1px solid #c2c2c2;
+  width: 300px;
+  height: 70px;
+  padding: 16px;
+  spacing: 0.5em;
+  color: #464646;
+  background: #c0c0c0;
+}
+
+.sound-player-overlay StBoxLayout {
+  padding-top: 2px;
+}
+
+.sound-player-generic-coverart {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================================================
+ * Workspace Switcher applet (workspace-switcher@cinnamon.org/applet.js)
+ * ===================================================================*/
+.workspace-button {
+  width: 20px;
+  height: 6px;
+  color: rgb(70, 70, 70);
+  border: 0px;
+  border-color: rgba(200, 200, 200, 1);
+  padding: 3px;
+  padding-right: 1px;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.workspace-button.vertical {
+  padding: 0px;
+  height: 1.5em;
+}
+
+.workspace-button:hover {
+  border-image: url("panel-assets/hover-1.png") 6;
+  color: rgb(70, 70, 70);
+  border-color: rgba(200, 200, 200, 1);
+}
+
+/*
+.panel-top .workspace-button:hover {
+  border-image: url("panel-assets/hover-1-top.svg") 6;
+}
+
+.panel-left .workspace-button:hover {
+  border-image: url("panel-assets/hover-1-left.svg") 6;
+}
+
+.panel-right .workspace-button:hover {
+  border-image: url("panel-assets/hover-1-right.svg") 6;
+}*/
+
+.workspace-button:outlined {
+  border-image: url("panel-assets/pressed.png") 6;
+  background: rgba(200, 200, 200, 1);
+  color: #fff;
+}
+
+/*
+.panel-top .workspace-button:outlined {
+  border-image: url("panel-assets/pressed-top.svg") 6;
+}
+
+.panel-left .workspace-button:outlined {
+  border-image: url("panel-assets/pressed-left.svg") 6;
+}
+
+.panel-right .workspace-button:outlined {
+  border-image: url("panel-assets/pressed-right.svg") 6;
+}*/
+
+/* Controls the style when using the "Visual representation" option */
+.workspace-graph {
+  padding: 3px 4px 3px 4px;
+  spacing: 4px;
+}
+
+.workspace-graph .workspace {
+  border: 1px solid black;
+  background-color: #c0c0c0;
+}
+
+.workspace-graph .workspace:active {
+  border: 1px solid #ffffff;
+  background-color: #c0c0c0;
+}
+
+.workspace-graph .workspace .windows {
+  -active-window-background: #808080;
+  -active-window-border: #000000;
+  -inactive-window-background: #c0c0c0;
+  -inactive-window-border: #000000;
+}
+
+.workspace-graph .workspace:active .windows {
+  -active-window-background: #000080;
+  -active-window-border: #ffffff;
+  -inactive-window-background: #808080;
+  -inactive-window-border: #000000;
+}
+
+/* ===================================================================
+ * Panel Launchers applet (panel-launchers@cinnamon.org/applet.js)
+ * ===================================================================*/
+.panel-launchers {
+  spacing: 10px;
+}
+
+.panel-launchers .launcher {
+  padding: 0px;
+  margin: 0px;
+}
+
+.panel-left .panel-launchers .launcher,
+.panel-right .panel-launchers .launcher {}
+
+
+/* ===================================================================
+ * Applets (applet.js)
+ * ===================================================================*/
+.panel-bottom .applet-separator,
+.panel-top .applet-separator {
+  width: 3px;
+  border-image: url("panel-assets/separator_h.png") 3;
+  margin: 2px; }
+.panel-left .applet-separator,
+.panel-right .applet-separator {
+  height: 4px;
+  border-image: url("panel-assets/separator_v.png") 3;
+  margin: 2px; }
+    
+
+.applet-separator-line {}
+
+.applet-box {
+  font-weight: bold;
+  color: rgb(74, 74, 74);
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  spacing: 3px;
+  text-align: center; }
+  .applet-box:hover {
+    border-image: url("panel-assets/hover-1.png") 6; }
+  .applet-box:checked,
+  .applet-box:active {
+    border-image: url("panel-assets/pressed.png") 6; } 
+
+.applet-box:highlight {
+  background-color: #000080;
+  color: white;
+}
+
+.applet-box.vertical {
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.applet-label {
+  font-weight: normal;
+  color: black; }
+  .applet-label:checked,
+  .applet-label:hover {
+    font-weight: normal; }
+
+.applet-icon {
+  icon-size: 22px; }
+  .applet-icon:hover,
+  .applet-icon:checked,
+  .applet-box:checked > .applet-icon,
+  .applet-box:hover > .applet-icon {}
+
+/* ===================================================================
+ * Workspace OSD (windowManager.js)
+ * ===================================================================*/
+.workspace-osd {
+  border-image: url("background-assets/bg-1.png") 6;
+  padding: 9px 15px;
+  color: black;
+  font-weight: bold;
+  font-size: 26pt; }
+
+.expo-workspaces-name-entry {
+  padding: 8px 12px;
+  height: 1.5em;
+  color: black;
+  text-align: center;
+  font-weight: normal;
+  border-image: url("background-assets/bg-1.png") 6;
+  selected-color: white;
+  caret-color: black;
+  caret-size: 1px;
+  selection-background-color: #000080;
+  transition-duration: 150; }
+
+.expo-workspaces-name-entry#selected {
+  font-weight: bold;
+  text-decoration: underline; }
+
+.expo-workspaces-name-entry#selected:focus {
+  font-weight: bold;
+  text-decoration: underline; }
+
+.expo-workspaces-name-entry:focus {
+  font-weight: bold;
+  text-decoration: underline; }
+
+/* ===================================================================
+ * Notification applet (notifications@cinnamon.org/applet.js)
+ * ===================================================================*/
+.notification-applet-padding {
+  padding: .5em 1em;
+}
+
+.notification-applet-container {
+  max-height: 100px;
+}
+
+/* Check Boxes */
+.check-box CinnamonGenericContainer {
+  spacing: .2em;
+  min-height: 18px;
+  padding-top: 2px;
+}
+
+.check-box StBin,
+.check-box:focus StBin {
+  width: 16px;
+  height: 16px;
+  background-image: url("control-assets/checkbox-unchecked.png");
+}
+
+.check-box:checked StBin,
+.check-box:focus:checked StBin {
+  background-image: url("control-assets/checkbox-checked.png");
+}
+
+.check-box StLabel {
+  font-weight: normal;
+}
+
+.radiobutton CinnamonGenericContainer {
+  spacing: .2em;
+  height: 18px;
+  padding-top: 2px;
+}
+
+.radiobutton StBin,
+.radiobutton:focus StBin {
+  width: 16px;
+  height: 16px;
+  background-image: url("control-assets/radio-unselected.png");
+}
+
+.radiobutton:checked StBin,
+.radiobutton:focus:checked StBin {
+  background-image: url("control-assets/radio-selected.png");
+}
+
+.radiobutton StLabel {
+  padding-top: 4px;
+  font-size: 0.9em;
+  box-shadow: none;
+}
+
+.flashspot {
+  background-color: white;
+}
+
+/* ===================================================================
+ * User applet (user@cinnamon.org/applet.js)
+ * ===================================================================*/
+.user-icon {
+  background-color: rgb(236, 236, 236);
+  border: 1px solid rgb(192, 192, 192);
+  padding: 0.2em;
+}
+
+.user-label {
+  color: rgb(70, 70, 70);
+  font-size: 16px;
+  margin: 6px;
+}
+
+/* ===================================================================
+ * OSD Popups
+ * ===================================================================*/
+.info-osd {
+  font-size: 18pt;
+  border-image: url("background-assets/bg-1.png") 6;
+  padding: 12px;
+  color: black;
+  text-align: center;
+}
+
+.osd-window {
+  border-image: url("background-assets/bg-1.png") 6;
+  color: rgb(70, 70, 70);
+  padding: 20px;
+  spacing: 1em;
+}
+
+.osd-window .level {
+  height: 0.7em;
+  background-color: rgba(70, 70, 70, 0.4);
+}
+
+.osd-window .level-bar {
+  background-color: rgb(172, 205, 138);
+}
+
+/* ===================================================================
+ * Snap/Tile Chrome (windowManager.js)
+ * ===================================================================*/
+.tile-preview,
+.tile-hud {
+  background-color: rgba(0, 0, 128, 0.4);
+  border: 1px solid rgba(0, 0, 128, 0.8);
+}
+
+.tile-preview.snap,
+.tile-hud.snap {
+  background-color: rgba(0, 0, 128, 0.4);
+}
+
+.tile-hud:top {
+  border-top-width: 0px;
+}
+
+.tile-hud:bottom {
+  border-bottom-width: 0px;
+}
+
+.tile-hud:left {
+  border-left-width: 0px;
+}
+
+.tile-hud:right {
+  border-right-width: 0px;
+}
+
+.tile-hud:top-left {
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+
+.tile-hud:top-right {
+  border-top-width: 0px;
+  border-right-width: 0px;
+}
+
+.tile-hud:bottom-left {
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+}
+
+.tile-hud:bottom-right {
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+}
+
+/* ###################################################################
+ * Cinnamon 5.x / 6.x widgets
+ *
+ * Cinnamon keeps its own dark stylesheet loaded underneath every
+ * theme, so any widget a theme does not claim explicitly renders with
+ * that dark, rounded fallback. Everything below claims widgets that
+ * were added or reworked after the sections above were written.
+ * ###################################################################*/
+
+/* ===================================================================
+ * Menu applet (menu@cinnamon.org)
+ * Cinnamon 6.x rewrote this applet; it moved off the .menu-* classes
+ * styled above and onto .appmenu-*.
+ * ===================================================================*/
+.appmenu-background {
+  padding: 0px; }
+
+.appmenu-background .popup-menu-content {
+  padding: 0px; }
+
+.appmenu-main-box {
+  spacing: 0px; }
+
+/* The sidebar and the right box meet on a shared etched groove: dark
+   on the sidebar's edge, light on the right box's. */
+.appmenu-sidebar {
+  background-color: #c0c0c0;
+  border-radius: 0px;
+  border-right: 1px solid #808080;
+  padding: 4px 0px; }
+
+.appmenu-right-box {
+  border-left: 1px solid #ffffff;
+  spacing: 4px;
+  padding: 4px; }
+
+.appmenu-categories-applications-box {
+  spacing: 4px; }
+
+.appmenu-categories-applications-box:top {
+  padding-top: 4px; }
+
+.appmenu-applications-box {
+  padding-right: 4px; }
+
+.appmenu-sidebar-user-box {
+  padding: 4px 8px; }
+
+.appmenu-system-box {
+  spacing: 4px;
+  padding: 4px 8px 0px 8px; }
+
+.appmenu-system-button,
+.appmenu-system-button-lock,
+.appmenu-system-button-logout,
+.appmenu-system-button-shutdown,
+.appmenu-sidebar .appmenu-system-button,
+.appmenu-sidebar .appmenu-system-button-shutdown {
+  color: black;
+  padding: 4px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  border-image: url("button-assets/button.png") 6; }
+
+.appmenu-system-button:hover,
+.appmenu-system-button-lock:hover,
+.appmenu-system-button-logout:hover,
+.appmenu-system-button-shutdown:hover,
+.appmenu-sidebar .appmenu-system-button-lock:hover,
+.appmenu-sidebar .appmenu-system-button-logout:hover,
+.appmenu-sidebar .appmenu-system-button-shutdown:hover {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-hover.png") 6; }
+
+.appmenu-system-button:active,
+.appmenu-system-button:focus:active {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-pressed.png") 6; }
+
+.appmenu-category-button,
+.appmenu-category-button-selected,
+.appmenu-category-button-greyed,
+.appmenu-application-button,
+.appmenu-application-button-selected,
+.appmenu-sidebar-button {
+  color: black;
+  padding: 3px 4px;
+  spacing: 4px;
+  border: none;
+  border-radius: 0px; }
+
+.appmenu-sidebar-button {
+  margin: 0px 8px; }
+
+.appmenu-category-button:hover,
+.appmenu-application-button:hover,
+.appmenu-sidebar-button:hover {
+  color: #ffffff;
+  border-color: transparent;
+  background-color: #000080; }
+
+.appmenu-category-button-selected,
+.appmenu-application-button-selected {
+  color: #ffffff;
+  background-color: #000080; }
+
+.appmenu-category-button-greyed {
+  color: #808080;
+  text-shadow: 1px 1px #ffffff;
+  font-style: italic; }
+
+.appmenu-category-button-greyed StIcon {
+  opacity: 0.5; }
+
+.appmenu-application-button:highlighted,
+.appmenu-application-button-selected:highlighted {
+  font-weight: bold; }
+
+.appmenu-application-button-label,
+.appmenu-category-button-label {
+  padding: 0px; }
+
+.appmenu-application-button-description {
+  color: #808080; }
+
+.appmenu-application-button:hover .appmenu-application-button-description,
+.appmenu-application-button-selected .appmenu-application-button-description {
+  color: #ffffff; }
+
+.appmenu-search-box {
+  spacing: 4px;
+  padding: 4px; }
+
+.appmenu-search-entry-icon,
+.menu-search-entry-icon {
+  icon-size: 1em;
+  color: black; }
+
+/* ===================================================================
+ * Shell entries
+ * Cinnamon groups these under one dark rule with ID specificity, so
+ * they have to be claimed by ID to win the cascade.
+ * ===================================================================*/
+#appmenu-search-entry,
+#menu-search-entry,
+.expo-workspaces-name-entry,
+.prompt-dialog-password-entry,
+.run-dialog-entry {
+  color: black;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 0px;
+  padding: 2px 4px;
+  min-height: 18px;
+  caret-color: black;
+  caret-size: 1px;
+  selected-color: #ffffff;
+  selection-background-color: #000080;
+  border-image: url("misc-assets/entry.png") 6; }
+
+#appmenu-search-entry:focus,
+#menu-search-entry:focus,
+.expo-workspaces-name-entry:focus,
+.prompt-dialog-password-entry:focus,
+.run-dialog-entry:focus {
+  color: black;
+  background-color: #ffffff;
+  border-color: transparent;
+  border-image: url("misc-assets/entry.png") 6; }
+
+#appmenu-search-entry:insensitive,
+#menu-search-entry:insensitive,
+.expo-workspaces-name-entry:insensitive,
+.prompt-dialog-password-entry:insensitive,
+.run-dialog-entry:insensitive {
+  color: #808080;
+  background-color: #c0c0c0; }
+
+#appmenu-search-entry StLabel.hint-text,
+#menu-search-entry StLabel.hint-text,
+.expo-workspaces-name-entry StLabel.hint-text,
+.prompt-dialog-password-entry StLabel.hint-text,
+.run-dialog-entry StLabel.hint-text,
+.hint-text {
+  color: #808080; }
+
+#appmenu-search-entry StIcon.peek-password,
+#menu-search-entry StIcon.peek-password,
+.expo-workspaces-name-entry StIcon.peek-password,
+.prompt-dialog-password-entry StIcon.peek-password,
+.run-dialog-entry StIcon.peek-password {
+  color: black;
+  icon-size: 16px; }
+
+/* ===================================================================
+ * User widget (userWidget.js)
+ * ===================================================================*/
+.user-widget.horizontal,
+.user-widget.vertical {
+  spacing: 4px; }
+
+.user-widget-label,
+.user-widget.vertical .user-widget-label,
+.user-widget.horizontal .user-widget-label {
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center; }
+
+.user-avatar,
+.user-icon.user-avatar {
+  border-radius: 0px;
+  border: 1px solid #808080; }
+
+/* ===================================================================
+ * Separators (separator.js, popupMenu.js)
+ * Both are St.DrawingAreas that paint a Cairo gradient from four
+ * custom properties. Leaving them undefined makes Cinnamon log a
+ * warning on every repaint, so they are always set explicitly. The
+ * popup separator is drawn by the border-image above instead, so its
+ * gradient is zeroed out rather than coloured.
+ * ===================================================================*/
+.popup-separator-menu-item {
+  -margin-horizontal: 0px;
+  -gradient-height: 0px;
+  -gradient-start: transparent;
+  -gradient-end: transparent; }
+
+.separator,
+.calendar-events-main-box .separator {
+  -margin-horizontal: 4px;
+  -gradient-height: 1px;
+  -gradient-start: #808080;
+  -gradient-end: #808080; }
+
+/* ===================================================================
+ * Dialogs (dialog.js, endSessionDialog.js, polkitAuthenticationAgent.js)
+ * ===================================================================*/
+.dialog {
+  color: black;
+  background-color: #c0c0c0;
+  border: none;
+  border-radius: 0px;
+  padding: 12px;
+  border-image: url("background-assets/menu.png") 6; }
+
+.dialog .dialog-content-box {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  spacing: 16px;
+  max-width: 28em; }
+
+.dialog .confirm-dialog-title,
+.message-dialog-content .message-dialog-title {
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em; }
+
+.message-dialog-content {
+  spacing: 12px; }
+
+.message-dialog-content .message-dialog-description,
+.message-dialog-content .message-dialog-caption {
+  color: black;
+  text-align: center; }
+
+.dialog-list {
+  spacing: 12px; }
+
+.dialog-list .dialog-list-title {
+  color: black;
+  font-weight: bold;
+  text-align: center; }
+
+.dialog-list .dialog-list-scrollview {
+  max-height: 200px; }
+
+.dialog-list .dialog-list-box {
+  spacing: 1em; }
+
+.dialog-list .dialog-list-box .dialog-list-item {
+  spacing: 1em; }
+
+.dialog-list .dialog-list-box .dialog-list-item .dialog-list-item-title {
+  color: black;
+  font-weight: bold; }
+
+.dialog-list .dialog-list-box .dialog-list-item .dialog-list-item-description {
+  color: #808080; }
+
+.end-session-dialog {
+  min-width: 40em; }
+
+.end-session-dialog .dialog-content-box {
+  spacing: 0px; }
+
+.end-session-dialog .dialog-list {
+  spacing: 0px; }
+
+.end-session-dialog .dialog-list .dialog-list-title {
+  color: black;
+  background-color: transparent;
+  border-radius: 0px;
+  padding: 4px;
+  margin: 4px 0px; }
+
+.dialog .dialog-button,
+.dialog .dialog-button:default,
+.dialog .dialog-button:destructive-action {
+  color: black;
+  font-weight: normal;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  padding: 3px 16px;
+  min-height: 18px;
+  border-image: url("button-assets/button.png") 6; }
+
+.dialog .dialog-button:hover,
+.dialog .dialog-button:hover:default,
+.dialog .dialog-button:hover:destructive-action {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-hover.png") 6; }
+
+.dialog .dialog-button:focus {
+  color: black;
+  background-color: transparent;
+  box-shadow: none;
+  border-image: url("button-assets/button-focus.png") 6; }
+
+.dialog .dialog-button:focus:hover {
+  border-image: url("button-assets/button-focus-hover.png") 6; }
+
+.dialog .dialog-button:active,
+.dialog .dialog-button:checked,
+.dialog .dialog-button:active:default,
+.dialog .dialog-button:checked:default,
+.dialog .dialog-button:active:destructive-action,
+.dialog .dialog-button:checked:destructive-action {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-pressed.png") 6; }
+
+.dialog .dialog-button:insensitive,
+.dialog .dialog-button:insensitive:default,
+.dialog .dialog-button:insensitive:destructive-action {
+  color: #808080;
+  text-shadow: 1px 1px #ffffff;
+  background-color: transparent;
+  border-color: transparent;
+  border-image: url("button-assets/button.png") 6; }
+
+.prompt-dialog .dialog-content-box {
+  spacing: 12px;
+  margin-bottom: 12px; }
+
+.prompt-dialog-info-label,
+.prompt-dialog-null-label,
+.run-dialog-description,
+.caps-lock-warning-label {
+  color: #808080; }
+
+.prompt-dialog-error-label {
+  color: #800000; }
+
+.polkit-dialog-user-combo,
+.polkit-dialog-user-layout {
+  color: black; }
+
+.run-dialog .dialog-content-box {
+  margin: 4px; }
+
+.audio-device-selection-dialog .audio-selection-box {
+  spacing: 12px; }
+
+.audio-selection-device {
+  border: none;
+  border-radius: 0px;
+  color: black; }
+
+.audio-selection-device:active,
+.audio-selection-device:hover,
+.audio-selection-device:focus {
+  color: #ffffff;
+  background-color: #000080; }
+
+.audio-selection-device-box {
+  padding: 8px;
+  spacing: 8px; }
+
+.audio-selection-device-icon {
+  icon-size: 64px; }
+
+/* ===================================================================
+ * On-screen displays (osdWindow.js, windowManager.js)
+ * ===================================================================*/
+.resize-popup,
+.workspace-switch-osd,
+.media-keys-osd {
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  text-align: center;
+  padding: 12px;
+  border-image: url("background-assets/bg-1.png") 6; }
+
+.media-keys-osd {
+  margin-bottom: 1em;
+  font-weight: normal;
+  spacing: 8px;
+  padding: 8px 12px; }
+
+.media-keys-osd StIcon {
+  color: black;
+  icon-size: 32px; }
+
+/* St.BarLevel replaced the old .level/.level-bar drawing with these
+   -barlevel-* properties. */
+.media-keys-osd .level,
+.osd-window .level {
+  min-width: 160px;
+  -barlevel-height: 10px;
+  -barlevel-background-color: #ffffff;
+  -barlevel-active-background-color: #000080;
+  -barlevel-border-color: #808080;
+  -barlevel-active-border-color: #000080;
+  -barlevel-border-width: 1px;
+  -barlevel-amplify-color: #800000;
+  -barlevel-amplify-separator-width: 2px; }
+
+.media-keys-osd .level-bar,
+.osd-window .level-bar {
+  border-radius: 0px;
+  background-color: #000080; }
+
+.workspace-switch-osd {
+  min-width: 140px;
+  margin-bottom: 1em;
+  font-weight: bold;
+  padding: 12px 24px; }
+
+.workspace-switch-osd-indicator-box {
+  spacing: 6px; }
+
+.workspace-switch-osd-indicator {
+  background-color: #c0c0c0;
+  border: 1px solid #808080;
+  border-radius: 0px;
+  padding: 4px;
+  margin: 6px; }
+
+.workspace-switch-osd-indicator:active {
+  background-color: #000080;
+  border: 1px solid #000000;
+  padding: 4px;
+  margin: 6px; }
+
+.ripple-pointer-location {
+  border-radius: 0px;
+  background-color: #000080;
+  box-shadow: none; }
+
+/* ===================================================================
+ * Sliders (slider.js)
+ * ===================================================================*/
+.slider {
+  height: 18px;
+  min-width: 15em;
+  -slider-height: 0.5em;
+  -slider-background-color: #c0c0c0;
+  -slider-border-color: black;
+  -slider-active-background-color: #000080;
+  -slider-active-border-color: black;
+  -slider-border-width: 1px;
+  -slider-handle-radius: 4px;
+  color: black; }
+
+/* ===================================================================
+ * Notification and sound-player buttons
+ * The bevel comes from the border-image set further up; these clear
+ * the dark fill and rounding Cinnamon puts behind it.
+ * ===================================================================*/
+.notification {
+  color: black; }
+
+.notification-button,
+.notification-icon-button,
+.sound-player StButton {
+  background-color: transparent;
+  border-radius: 0px;
+  font-weight: normal; }
+
+.notification-button:hover,
+.notification-icon-button:hover,
+.sound-player StButton:hover,
+.notification-button:focus,
+.notification-icon-button:focus,
+.sound-player StButton:focus,
+.notification-button:active,
+.notification-icon-button:active,
+.sound-player StButton:active {
+  background-color: transparent;
+  box-shadow: none; }
+
+.notification-button:insensitive,
+.notification-icon-button:insensitive,
+.sound-player StButton:insensitive {
+  color: #808080;
+  background-color: transparent; }
+
+/* ===================================================================
+ * Panel extras (cornerbar@cinnamon.org, systray@cinnamon.org)
+ * ===================================================================*/
+.applet-cornerbar {
+  width: 6px;
+  background-color: #c0c0c0;
+  border: 1px solid #808080;
+  border-radius: 0px; }
+
+.applet-cornerbar.vertical {
+  height: 6px; }
+
+.applet-cornerbar-box {
+  background: none;
+  padding: 2px; }
+
+.applet-cornerbar-box:hover > .applet-cornerbar {
+  background-color: #ffffff; }
+
+.systray {
+  padding: 0px;
+  spacing: 2px; }
+
+.applet-separator-line {
+  width: 1px;
+  background: #808080; }
+
+.applet-separator-line-vertical {
+  height: 1px;
+  background: #808080; }
+
+.grouped-window-list-item-label {
+  width: 15em;
+  min-width: 5px; }
+
+.grouped-window-list-notifications-badge {
+  border-radius: 0px;
+  background-color: #800000;
+  color: #ffffff; }
+
+.grouped-window-list-notifications-badge-label {
+  color: #ffffff;
+  font-size: 9px; }
+
+/* ===================================================================
+ * Calendar applet events pane (calendar@cinnamon.org)
+ * ===================================================================*/
+.calendar-events-main-box {
+  height: 300px;
+  min-width: 350px;
+  margin-right: 8px;
+  border-right: 1px solid #808080; }
+
+.calendar-today-home-button,
+.calendar-today-home-button-enabled {
+  color: black;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 0px; }
+
+.calendar-today-home-button:hover,
+.calendar-today-home-button-enabled:hover {
+  color: #ffffff;
+  background-color: #000080; }
+
+.calendar-today-day-label,
+.calendar-today-date-label,
+.calendar-events-date-label {
+  color: black;
+  font-weight: bold;
+  text-align: center; }
+
+.calendar-today,
+.calendar-today:hover {
+  color: #000080;
+  font-weight: bold;
+  background-color: #ffffff;
+  box-shadow: none; }
+
+.calendar-not-today:selected {
+  color: #ffffff;
+  background-color: #000080; }
+
+.calendar-events-no-events-button {
+  color: #808080;
+  margin: 4px 0px;
+  padding: 4px;
+  border-radius: 0px; }
+
+.calendar-events-no-events-button:hover {
+  color: black; }
+
+.calendar-events-no-events-icon {
+  color: #808080;
+  icon-size: 96px; }
+
+.calendar-events-no-events-label {
+  color: black;
+  text-align: center;
+  margin-top: 12px; }
+
+.calendar-events-scrollbox {
+  margin-top: 8px; }
+
+.calendar-event-button {
+  margin: 2px 0px;
+  border: 1px solid transparent;
+  border-radius: 0px; }
+
+.calendar-event-button:hover {
+  color: #ffffff;
+  background-color: #000080;
+  border-color: #000080; }
+
+.calendar-event-row-content {
+  margin: 4px; }
+
+.calendar-event-color-strip {
+  width: 2px; }
+
+.calendar-event-time-past {
+  color: #808080; }
+
+.calendar-event-time-present,
+.calendar-event-time-future {
+  color: black; }
+
+.calendar-event-time-present:all-day {
+  color: #000080; }
+
+.calendar-event-summary {
+  color: #404040; }
+
+.calendar-event-countdown {
+  color: #808080; }
+
+.calendar-event-countdown:soon {
+  color: #808000; }
+
+.calendar-event-countdown:imminent {
+  color: #800000; }
+
+.calendar-event-countdown:current {
+  color: #008000; }
+
+.calendar-event-button:hover .calendar-event-summary,
+.calendar-event-button:hover .calendar-event-time-past,
+.calendar-event-button:hover .calendar-event-time-present,
+.calendar-event-button:hover .calendar-event-time-future,
+.calendar-event-button:hover .calendar-event-countdown {
+  color: #ffffff; }
+
+.calendar-day-event-dot {
+  background-color: #000080;
+  border-radius: 0px; }
+
+.calendar-day-event-dot-box {
+  spacing: 2px; }
+
+/* ===================================================================
+ * Expo and workspace switcher
+ * ===================================================================*/
+.workspace-switcher {
+  padding: 0px 2px; }
+
+.workspace-thumbnails-background {
+  padding: 4px;
+  background-color: #c0c0c0; }
+
+/* ===================================================================
+ * Second check-box style (checkBox.js)
+ * ===================================================================*/
+.check-box-2 StBoxLayout {
+  spacing: .5em; }
+
+.check-box-2 StBin,
+.check-box-2:focus StBin {
+  width: 16px;
+  height: 16px;
+  background-image: url("control-assets/checkbox-unchecked.png"); }
+
+.check-box-2:checked StBin,
+.check-box-2:focus:checked StBin {
+  background-image: url("control-assets/checkbox-checked.png"); }
+
+.check-box-2 StLabel {
+  color: black;
+  font-weight: normal; }
+
+/* ===================================================================
+ * On-screen keyboard (keyboard.js)
+ * ===================================================================*/
+#virtual-keyboard {
+  background-color: #c0c0c0;
+  border-image: url("background-assets/menu.png") 6; }
+
+.vkeyboard-key,
+.enter-key,
+.escape-key,
+.hide-key,
+.modifier-key,
+.non-alpha-key,
+.shift-key-lowercase,
+.shift-key-uppercase {
+  color: black;
+  padding: 4px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  border-image: url("button-assets/button.png") 6; }
+
+.vkeyboard-key:hover,
+.enter-key:hover,
+.escape-key:hover,
+.hide-key:hover,
+.modifier-key:hover,
+.non-alpha-key:hover,
+.shift-key-lowercase:hover,
+.shift-key-uppercase:hover {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-hover.png") 6; }
+
+.vkeyboard-key:active,
+.vkeyboard-key:checked,
+.modifier-key:active,
+.modifier-key:checked,
+.shift-key-uppercase:active,
+.shift-key-uppercase:checked {
+  color: black;
+  background-color: transparent;
+  border-image: url("button-assets/button-pressed.png") 6; }
+
+.vkeyboard-key-container {
+  spacing: 2px; }
+
+.vkeyboard-subkeys {
+  color: black;
+  background-color: #c0c0c0;
+  border-radius: 0px;
+  border-image: url("background-assets/menu.png") 6; }
+
+.word-suggestions {
+  color: black; }
+
+/* ===================================================================
+ * Input method candidate popup (status/keyboard.js)
+ * ===================================================================*/
+.candidate-popup-content {
+  padding: 4px;
+  spacing: 4px; }
+
+.candidate-index {
+  color: #808080;
+  padding: 0px 4px 0px 0px; }
+
+.candidate-box {
+  padding: 2px 4px;
+  border-radius: 0px; }
+
+.candidate-box:selected {
+  color: #ffffff;
+  background-color: #000080; }
+
+.candidate-page-button {
+  color: black;
+  padding: 4px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  border-image: url("button-assets/button.png") 6; }
+
+.candidate-page-button:hover {
+  border-image: url("button-assets/button-hover.png") 6; }
+
+.candidate-page-button:active {
+  border-image: url("button-assets/button-pressed.png") 6; }
+
+.candidate-page-button-box {
+  height: 24px; }
+
+.candidate-page-button-icon {
+  color: black;
+  icon-size: 12px; }
+
+/* ===================================================================
+ * Misc
+ * ===================================================================*/
+.monitor-label {
+  color: black;
+  background-color: #c0c0c0;
+  border: 1px solid #808080;
+  border-radius: 0px; }
+
+/* Device chooser rows (removable drives, audio device selection) */
+.device-box .device-icon,
+.device-box .device-labels .primary-label {
+  color: black; }
+
+.device-box .device-labels .status-label {
+  color: #808080; }
+
+.user-icon StIcon.highlighted {
+  border: 1px solid #000080;
+  border-radius: 0px; }
+
+/* Per-window progress overlay on task buttons */
+.grouped-window-list-item-box .progress,
+.window-list-item-box .progress {
+  background-color: rgba(0, 0, 128, 0.35); }
+
+.pie-timer {
+  width: 30px;
+  height: 30px;
+  -pie-border-width: 1px;
+  -pie-border-color: #808080;
+  -pie-background-color: rgba(0, 0, 128, 0.6); }
+
+.candidate-popup-boxpointer {
+  -arrow-border-radius: 0px;
+  -arrow-background-color: #c0c0c0;
+  -arrow-border-width: 1px;
+  -arrow-border-color: #808080;
+  -arrow-base: 18px;
+  -arrow-rise: 10px;
+  -arrow-box-shadow: none; }
+
+.candidate-page-button-previous,
+.candidate-page-button-next {
+  border-radius: 0px; }

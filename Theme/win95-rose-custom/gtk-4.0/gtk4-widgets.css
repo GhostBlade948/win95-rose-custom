@@ -1,0 +1,365 @@
+/************************
+ * GTK4-only widgetry   *
+ ************************/
+
+/*
+   Widgets that either did not exist in GTK3 or were renamed when GTK3's
+   equivalents were dropped: menus became popovers, GtkComboBox became
+   GtkDropDown, the tree/list views became list/column/grid views, and
+   scrollbars lost their stepper buttons.
+*/
+
+/* ---------- focus ---------- */
+
+/*
+   The shared stylesheet sets outline-style: solid on every widget, which GTK3
+   only ever painted on focus.  GTK4 paints it always, framing every box in the
+   window, so outlines are switched off and reinstated as the dotted focus
+   rectangle Windows 95 used.
+*/
+* {
+  outline-style: none; }
+
+*:focus-visible {
+  outline: 1px dotted @border_dark;
+  outline-offset: -2px; }
+
+/* ---------- popovers, and the menus that are now popovers ---------- */
+
+popover > arrow,
+popover > contents {
+  border: 1px solid @border_dark;
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: @bg_color;
+  color: @text_color;
+  padding: 2px; }
+
+popover.menu > contents {
+  padding: 1px;
+  background-color: @bg_bright; }
+
+popover.menu modelbutton {
+  border-radius: 0px;
+  padding: 3px 6px;
+  min-height: 16px;
+  color: @menu_text_color; }
+  popover.menu modelbutton:hover,
+  popover.menu modelbutton:focus {
+    background-color: @theme_selected_bg_color;
+    color: @selected_fg_color; }
+  popover.menu modelbutton:disabled {
+    color: @disabled_font;
+    text-shadow: 1px 1px @disabled_font_shadow; }
+
+popover.menu separator {
+  margin: 2px 1px;
+  background-color: transparent;
+  border-top: 1px solid @border_shade;
+  border-bottom: 1px solid @border_bright; }
+
+menubar > item {
+  padding: 3px 6px;
+  border-radius: 0px; }
+  menubar > item:selected,
+  menubar > item:hover {
+    background-color: @theme_selected_bg_color;
+    color: @selected_fg_color; }
+
+/* ---------- GtkDropDown (the GtkComboBox replacement) ---------- */
+
+/* Heights here are matched to the GTK3 theme so that GTK3 and GTK4 windows
+   line up when they sit side by side. */
+dropdown > button {
+  padding: 1px 4px;
+  margin: 2px;
+  min-height: 20px; }
+
+dropdown > button > box > arrow,
+dropdown > button > arrow {
+  min-width: 16px;
+  min-height: 15px;
+  -gtk-icon-source: url("assets/combobox-arrow-down.png"); }
+
+dropdown > button:disabled > box > arrow,
+dropdown > button:disabled > arrow {
+  -gtk-icon-source: url("assets/combobox-arrow-down-disabled.png"); }
+
+dropdown > popover.menu > contents {
+  padding: 0px;
+  background-color: @bg_bright; }
+
+dropdown > popover.menu listview > row {
+  padding: 2px 4px;
+  border-radius: 0px; }
+
+/* ---------- list, column and grid views ---------- */
+
+listview > row,
+gridview > child,
+columnview > listview > row {
+  border-radius: 0px;
+  outline: none;
+  padding: 2px 4px; }
+
+listview > row:selected,
+gridview > child:selected,
+columnview > listview > row:selected {
+  background-color: @theme_selected_bg_color;
+  color: @selected_fg_color; }
+
+columnview > header > button {
+  border-radius: 0px;
+  min-height: 16px;
+  padding: 1px 6px; }
+
+columnview > header > button > box > label {
+  padding: 0px 2px; }
+
+/* ---------- scrollbars ---------- */
+
+/* GTK4 removed stepper buttons, so only the trough and slider remain. */
+scrollbar {
+  background-color: @scrollbar_trough_bg_color;
+  border: none; }
+
+scrollbar > range > trough {
+  background-color: @scrollbar_trough_bg_color;
+  border: none;
+  border-radius: 0px; }
+
+scrollbar > range > trough > slider {
+  min-width: 12px;
+  min-height: 12px;
+  margin: 0px;
+  border: 2px solid @border_dark;
+  border-radius: 0px;
+  border-image: url("buttons/dialog_button_normal.png");
+  border-image-slice: 2 2 2 2;
+  background-color: @scrollbar_bg_color; }
+
+scrollbar.overlay-indicator:not(.dragging):not(.hovering) > range > trough > slider {
+  background-color: @scrollbar_bg_color; }
+
+/* ---------- switch ---------- */
+
+/* Windows 95 had no switch; a sunken well with a raised knob is the closest
+   thing its widget set offers. */
+switch {
+  min-width: 38px;
+  min-height: 18px;
+  padding: 0px;
+  border-radius: 0px;
+  background-color: @bg_bright; }
+
+switch > slider {
+  min-width: 16px;
+  min-height: 16px;
+  margin: 1px;
+  border: 2px solid @border_dark;
+  border-radius: 0px;
+  border-image: url("buttons/dialog_button_normal.png");
+  border-image-slice: 2 2 2 2;
+  background-color: @bg_color; }
+
+switch:checked {
+  background-color: @theme_selected_bg_color; }
+
+/* ---------- scale ---------- */
+
+scale.horizontal,
+scale.vertical {
+  padding: 0px;
+  margin: 3px; }
+
+scale.horizontal { min-height: 22px; }
+scale.vertical { min-width: 22px; }
+
+scale.horizontal > trough,
+scale.vertical > trough {
+  border: 2px solid @border_dark;
+  border-radius: 0px;
+  border-image: url("assets/entry.png");
+  border-image-slice: 2 2 2 2;
+  background-color: @bg_color; }
+
+scale.horizontal > trough { min-height: 4px; }
+scale.vertical > trough { min-width: 4px; }
+
+scale > trough > highlight {
+  background-color: @theme_selected_bg_color;
+  border-radius: 0px; }
+
+/*
+   The handle stands proud of the groove.  These carry a class in the selector
+   because the shared stylesheet pins the slider to 1px through
+   "scale.horizontal slider", which would otherwise outrank a plain
+   element-only selector here.
+*/
+scale.horizontal > trough > slider,
+scale.vertical > trough > slider {
+  border: 2px solid @border_dark;
+  border-radius: 0px;
+  border-image: url("buttons/dialog_button_normal.png");
+  border-image-slice: 2 2 2 2;
+  background-color: @bg_color; }
+
+scale.horizontal > trough > slider {
+  min-width: 11px;
+  min-height: 21px;
+  margin: -9px 0px; }
+
+scale.vertical > trough > slider {
+  min-width: 21px;
+  min-height: 11px;
+  margin: 0px -9px; }
+
+/* ---------- entries and spin buttons ---------- */
+
+entry > text,
+spinbutton > text {
+  background-color: transparent;
+  color: @text_color; }
+
+entry > text > placeholder {
+  color: @text_color_light; }
+
+spinbutton > button {
+  min-width: 16px;
+  min-height: 9px;
+  padding: 0px;
+  border-radius: 0px; }
+
+spinbutton > button.up {
+  -gtk-icon-source: url("assets/arrow-up.png"); }
+
+spinbutton > button.down {
+  -gtk-icon-source: url("assets/arrow-down.png"); }
+
+/* ---------- expanders ---------- */
+
+expander-widget > box > title > expander > arrow,
+expander > arrow {
+  min-width: 12px;
+  min-height: 12px;
+  -gtk-icon-source: url("assets/expander_plus.png"); }
+
+expander-widget:checked > box > title > expander > arrow,
+expander:checked > arrow {
+  -gtk-icon-source: url("assets/expander_minus.png"); }
+
+/* ---------- tooltips ---------- */
+
+tooltip,
+tooltip.background {
+  border: 1px solid @border_dark;
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: @tooltip_bg_color;
+  color: @tooltip_fg_color; }
+
+tooltip > label {
+  padding: 1px 3px; }
+
+/* ---------- window handle / header bars ---------- */
+
+windowhandle > headerbar,
+windowhandle > .titlebar {
+  border-radius: 0px; }
+
+headerbar,
+.titlebar {
+  min-height: 32px; }
+
+/* ---------- libadwaita ---------- */
+
+/*
+   libadwaita applications ignore the theme setting and load Adwaita, then apply
+   ~/.config/gtk-4.0/gtk.css over the top; these override the Adwaita rules that
+   survive that, all of which are rounded or tinted.
+*/
+
+/* Adwaita rounds window corners and casts a drop shadow; Windows 95 did neither. */
+window.csd,
+window.csd > decoration,
+window.background.csd,
+window.csd > .titlebar,
+window.csd headerbar.titlebar {
+  border-radius: 0px;
+  box-shadow: none; }
+
+/* Window buttons keep the raised square look from gtk-windowbuttons.css rather
+   than Adwaita's tinted circles. */
+windowcontrols > button.titlebutton,
+windowcontrols > button.titlebutton:hover,
+windowcontrols > button.titlebutton.close,
+windowcontrols > button.titlebutton.close:hover {
+  border-radius: 0px;
+  background-color: transparent;
+  color: @bg_dark;
+  box-shadow: none; }
+
+.card,
+.boxed-list,
+.boxed-list-separate > row,
+.osd,
+.toolbar,
+banner > revealer > widget,
+toast {
+  border-radius: 0px;
+  box-shadow: none;
+  background-color: @bg_color;
+  color: @fg_color; }
+
+.card,
+.boxed-list {
+  border: 2px solid @border_dark;
+  border-image: url("assets/frame_inset.png");
+  border-image-slice: 2 2 2 2; }
+
+row.activatable:hover,
+.boxed-list > row:hover {
+  background-color: @bg_color; }
+
+row.activatable:selected,
+.boxed-list > row:selected,
+.navigation-sidebar > row:selected {
+  background-color: @theme_selected_bg_color;
+  color: @selected_fg_color; }
+
+.navigation-sidebar {
+  background-color: @bg_color;
+  color: @fg_color; }
+
+.navigation-sidebar > row {
+  border-radius: 0px;
+  padding: 3px 6px; }
+
+button.pill,
+button.circular {
+  border-radius: 0px; }
+
+avatar {
+  border-radius: 0px;
+  background-color: @bg_shade;
+  color: @fg_color; }
+
+.title-1, .title-2, .title-3, .title-4, .heading {
+  font-weight: bold; }
+
+.dim-label {
+  color: @text_color_light;
+  opacity: 1; }
+
+preferencesgroup > box > label,
+.preferences-group > box > label {
+  font-weight: bold;
+  color: @fg_color; }
+
+progressbar > trough > progress {
+  background-color: @progressbar_color;
+  border-radius: 0px; }
+
+statuspage {
+  background-color: @bg_color;
+  color: @fg_color; }

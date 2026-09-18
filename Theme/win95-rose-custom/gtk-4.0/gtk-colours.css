@@ -1,0 +1,143 @@
+/***********
+ * colours *
+ ***********/
+
+/*
+   The Chicago95 palette, shared with the GTK3 theme, plus the named colours
+   libadwaita looks up.  Kept in its own file because GTK4 only accepts @import
+   at the top of a stylesheet, so gtk.css cannot define colours before its
+   imports the way the GTK3 gtk.css does.
+*/
+
+@define-color bg_color #c0c0c0;
+@define-color fg_color #000000;
+@define-color panel_fg_color #000000;
+@define-color panel_fg_color_bright #ffffff;
+@define-color base_color #ffffff;
+@define-color text_color #000000;
+@define-color text_color_light #808080;
+@define-color selected_bg_color #000080;
+@define-color selected_fg_color #ffffff;
+@define-color selected_inactive_bg_color #808080;
+@define-color selected_inactive_fg_color #000000;
+@define-color tooltip_bg_color #ffffe1;
+@define-color tooltip_bg_shade #494940;
+@define-color tooltip_fg_color #000000;
+@define-color bg_bright shade(white, 0.99);
+@define-color bg_shade shade(@bg_color, 0.66);
+@define-color bg_dark shade(@bg_color, 0.13);
+@define-color border_color @bg_color;
+@define-color border_bright #ffffff;
+@define-color border_light #dfdfdf;
+@define-color border_dark #000000;
+@define-color border_shade #808080;
+@define-color border_shade_dark #080808;
+@define-color outline_color black;
+@define-color font_color @text_color;
+@define-color font_bright white;
+@define-color disabled_font_shadow @border_bright;
+@define-color disabled_font @border_shade;
+@define-color icon_shadow black;
+@define-color icon_shadow_bright white;
+@define-color menu_text_color @text_color;
+@define-color menu_bg_color @bg_color;
+@define-color button_text_color @text_color;
+@define-color button_bg_color @bg_color;
+@define-color scrollbar_trough_bg_color #ffffff;
+@define-color scrollbar_bg_color @button_bg_color;
+@define-color scrollbar_solid_color @bg_color;
+@define-color window_title_bg_color #a34545;
+@define-color window_title_text_color #eb98a8;
+@define-color inactive_title_bg_color #997c7c;
+@define-color inactive_title_text_color #262323;
+@define-color dark_bg_color @bg_color;
+@define-color dark_fg_color @fg_color;
+@define-color theme_bg_color @bg_color;
+@define-color theme_fg_color @fg_color;
+@define-color theme_base_color @base_color;
+@define-color theme_text_color @text_color;
+@define-color theme_selected_bg_color @selected_bg_color;
+@define-color theme_selected_fg_color @selected_fg_color;
+@define-color theme_tooltip_bg_color @tooltip_bg_color;
+@define-color theme_tooltip_fg_color @tooltip_fg_color;
+@define-color theme_unfocused_selected_bg_color @selected_bg_color;
+@define-color info_fg_color @fg_color;
+@define-color info_bg_color #ffffe1;
+@define-color warning_fg_color @fg_color;
+@define-color warning_bg_color #FFEDCC;
+@define-color question_fg_color @info_fg_color;
+@define-color question_bg_color @info_bg_color;
+@define-color error_fg_color @fg_color;
+@define-color error_bg_color #FFCCCC;
+@define-color link_color #000080;
+@define-color link_color_shadow #ffffff;
+@define-color success_color #53d013;
+@define-color warning_color #f57600;
+@define-color error_color #cc0000;
+@define-color osd_base @dark_bg_color;
+@define-color osd_fg @dark_fg_color;
+@define-color osd_bg alpha(@osd_base, 0.8);
+@define-color osd_trough_bg @selected_bg_color;
+@define-color terminal_text_color @text_color;
+@define-color progressbar_color @selected_bg_color;
+@define-color notebook_label @font_color;
+@define-color notebook_label_selected @font_color;
+@define-color notebook_label_hover @font_color;
+@define-color notebook_bg @bg_color;
+@define-color notebook_bg_selected @bg_color;
+@define-color notebook_bg_hover @bg_color;
+@define-color notebook_bg_arrow transparent;
+@define-color dark_shadow #000000;
+@define-color text_bright #ffffff;
+@define-color toolbar_bg_color @bg_color;
+@define-color toolbar_fg_color @fg_color;
+@define-color transparent rgba(0,0,0,0);
+
+/*
+   libadwaita resolves these names at runtime, so redefining them recolours
+   libadwaita applications even where their own stylesheet wins over ours.
+*/
+@define-color window_bg_color @bg_color;
+@define-color window_fg_color @fg_color;
+@define-color view_bg_color @base_color;
+@define-color view_fg_color @text_color;
+@define-color headerbar_bg_color @window_title_bg_color;
+@define-color headerbar_fg_color @window_title_text_color;
+@define-color headerbar_border_color @border_dark;
+@define-color headerbar_backdrop_color @inactive_title_bg_color;
+@define-color headerbar_shade_color @border_dark;
+@define-color headerbar_darker_shade_color @border_dark;
+@define-color sidebar_bg_color @bg_color;
+@define-color sidebar_fg_color @fg_color;
+@define-color sidebar_backdrop_color @bg_color;
+@define-color sidebar_border_color @border_shade;
+@define-color sidebar_shade_color @border_shade;
+@define-color secondary_sidebar_bg_color @bg_color;
+@define-color secondary_sidebar_fg_color @fg_color;
+@define-color secondary_sidebar_backdrop_color @bg_color;
+@define-color secondary_sidebar_border_color @border_shade;
+@define-color secondary_sidebar_shade_color @border_shade;
+@define-color card_bg_color @bg_color;
+@define-color card_fg_color @fg_color;
+@define-color card_shade_color @border_shade;
+@define-color dialog_bg_color @bg_color;
+@define-color dialog_fg_color @fg_color;
+@define-color popover_bg_color @bg_color;
+@define-color popover_fg_color @fg_color;
+@define-color popover_shade_color @border_shade;
+@define-color shade_color @border_shade;
+@define-color scrollbar_outline_color @border_shade;
+@define-color thumbnail_bg_color @base_color;
+@define-color thumbnail_fg_color @text_color;
+@define-color accent_bg_color @selected_bg_color;
+@define-color accent_fg_color @selected_fg_color;
+@define-color accent_color @selected_bg_color;
+@define-color destructive_bg_color #800000;
+@define-color destructive_fg_color #ffffff;
+@define-color destructive_color #800000;
+@define-color success_bg_color #008000;
+@define-color success_fg_color #ffffff;
+@define-color warning_bg_color_adw #808000;
+@define-color warning_fg_color_adw #ffffff;
+@define-color error_bg_color_adw #800000;
+@define-color error_fg_color_adw #ffffff;

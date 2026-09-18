@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=win95-rose-custom
+Type=X-GNOME-Metatheme
+Comment=Windows 95 with rose titlebars, for Cinnamon.
+
+[X-GNOME-Metatheme]
+GtkTheme=win95-rose-custom
+MetacityTheme=win95-rose-custom
+IconTheme=Chicago95
+CursorTheme=Chicago95_Cursor_White
+CursorSize=32

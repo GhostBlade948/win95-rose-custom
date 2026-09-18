@@ -1,0 +1,42 @@
+/* ###################################################################
+ * win95-rose-custom for GTK4 (derived from Chicago95)
+ *
+ * GTK4 dropped widget style properties and renamed several widgets, so
+ * these stylesheets are separate copies of the GTK3 ones rather than
+ * symlinks to them.  The image assets are shared with gtk-3.0.
+ *
+ * GTK4 only honours @import at the very top of a stylesheet, which is
+ * why the palette lives in gtk-colours.css instead of being defined
+ * here the way the GTK3 gtk.css does it.
+ * ###################################################################*/
+
+@import url("gtk-colours.css");
+
+@import url("gtk-widgets.css");
+@import url("gtk-basic-effects.css");
+@import url("gtk-buttons.css");
+@import url("gtk-checks_radio.css");
+@import url("gtk-frames.css");
+@import url("gtk-viewports.css");
+@import url("gtk-scrolledwindows.css");
+@import url("gtk-list_cell_and_rows.css");
+@import url("gtk-paned.css");
+@import url("gtk-separators.css");
+@import url("gtk-treeviews.css");
+@import url("gtk-entry.css");
+@import url("gtk-combobox.css");
+@import url("gtk-scrollbar.css");
+@import url("gtk-assistant.css");
+@import url("gtk-headerbars.css");
+@import url("gtk-menu.css");
+@import url("gtk-notebooks.css");
+@import url("gtk-progressbar.css");
+@import url("gtk-popovers.css");
+@import url("gtk-titlebars.css");
+@import url("gtk-toolbar.css");
+@import url("gtk-window.css");
+@import url("gtk-windowbuttons.css");
+@import url("gtk-messagedialog.css");
+@import url("apps/filechooser.css");
+
+@import url("gtk4-widgets.css");

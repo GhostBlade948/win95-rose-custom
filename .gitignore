@@ -1,0 +1,4 @@
+# Backups written by the install scripts and editors
+*.bak
+*.tmp
+*~
