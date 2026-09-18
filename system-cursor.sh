@@ -21,10 +21,17 @@ if [ "$reset" = yes ]; then
 	if [ -f "$default_theme.bak" ]; then
 		mv "$default_theme.bak" "$default_theme"
 		echo "Restored $default_theme"
+	elif [ -f "$default_theme" ] && grep -q "$CURSOR" "$default_theme"; then
+		# No original to restore: the file was ours.
+		rm -f "$default_theme"
+		echo "Removed $default_theme"
 	fi
 else
 	mkdir -p "$(dirname "$default_theme")"
-	if [ -f "$default_theme" ] && [ ! -f "$default_theme.bak" ]; then
+	# A file already naming our cursor is one an earlier install wrote, not the
+	# original; backing it up would make --reset put our cursor back.
+	if [ -f "$default_theme" ] && [ ! -f "$default_theme.bak" ] &&
+	   ! grep -q "$CURSOR" "$default_theme"; then
 		cp -p "$default_theme" "$default_theme.bak"
 		echo "Saved the previous $default_theme as $default_theme.bak"
 	fi
@@ -67,7 +74,11 @@ mkdir -p "$(dirname "$greeter_conf")"
 if [ ! -f "$greeter_conf" ]; then
 	printf '[Greeter]\ncursor-theme-name=%s\ncursor-theme-size=%s\n' "$CURSOR" "$SIZE" > "$greeter_conf"
 else
-	[ -f "$greeter_conf.bak" ] || cp -p "$greeter_conf" "$greeter_conf.bak"
+	# As above: if the file already has our cursor, an earlier install created or
+	# edited it, and the original (if there was one) is already in the .bak.
+	if [ ! -f "$greeter_conf.bak" ] && ! grep -q "^cursor-theme-name=$CURSOR\$" "$greeter_conf"; then
+		cp -p "$greeter_conf" "$greeter_conf.bak"
+	fi
 	tmp=$(mktemp)
 	if grep -q '^\[Greeter\]' "$greeter_conf"; then
 		awk -v t="$CURSOR" -v s="$SIZE" '
