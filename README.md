@@ -26,6 +26,7 @@ against the upstream repository.
 | `vscode-theme.sh` | installs and selects the VS Code theme; the install targets run it |
 | `vscode-patch.sh` | inlines the VS Code stylesheet into `workbench.html`; needs root |
 | `system-cursor.sh` | cursor for the login screen and root apps; needs root |
+| `wine-colors.sh` | the theme's colours for Wine and Proton games |
 | `Lightdm/` | login screen theme (needs `lightdm-webkit2-greeter`) |
 | `INSTALL.md` | the installation guide |
 

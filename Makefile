@@ -26,10 +26,11 @@ APPLY      = sh $(SRCDIR)/apply-settings.sh
 VSCODE     = sh $(SRCDIR)/vscode-theme.sh
 DEPS       = sh $(SRCDIR)/install-deps.sh
 SHELLRC    = sh $(SRCDIR)/shell-setup.sh
+WINE       = sh $(SRCDIR)/wine-colors.sh
 
 .PHONY: all install install_user uninstall uninstall_user install_system_cursor \
 	apply_sudo_user install_vscode uninstall_vscode patch_vscode unpatch_vscode \
-	deps install_shell uninstall_shell list
+	deps install_shell uninstall_shell install_wine_colors uninstall_wine_colors list
 
 all:
 	@echo "targets: install (system, needs root), install_user, uninstall, uninstall_user"
@@ -137,6 +138,15 @@ install_shell:
 
 uninstall_shell:
 	-@$(SHELLRC) --reset
+
+# Wine draws its own titlebars and widgets, so games under Proton keep Wine's
+# default blue whatever the desktop theme is. This sets the colours in each
+# prefix's registry instead. Close Steam first.
+install_wine_colors:
+	@$(WINE)
+
+uninstall_wine_colors:
+	-@$(WINE) --reset
 
 # Squaring off VS Code's rounded corners means editing its own workbench.html,
 # which belongs to root and is not part of either install target. VS Code will

@@ -194,6 +194,30 @@ Know what you are getting into:
 
 None of these are installed automatically.
 
+### Wine and Proton games
+
+A game running under Wine or Proton keeps Wine's own bright blue titlebar
+whatever the desktop theme is, because Wine draws its titlebars, buttons and
+menus itself rather than going through GTK or the window manager. The colours
+come from `Control Panel\Colors` in each prefix's registry, so that is what gets
+changed:
+
+    make install_wine_colors      # apply the theme's palette
+    make uninstall_wine_colors    # put the originals back
+
+`sh wine-colors.sh --list` shows the prefixes it found and whether each one has
+been changed. It covers `~/.wine` and every Proton prefix in every Steam
+library, read from `libraryfolders.vdf`.
+
+**Close the game first, not the store.** A running Wine program keeps its
+prefix's registry in memory and writes it back out when it exits, which would
+undo the change; the Steam client on its own does not, so it can stay open. The
+script refuses to run while a `wineserver` is up.
+
+Each prefix's `user.reg` is kept as `user.reg.bak`, and the registry is written
+to a temporary file and moved into place, so an interrupted run cannot leave a
+prefix half-written. A game already running when you apply this needs restarting.
+
 ### Qt applications
 
 Qt applications are not themed. Two options:
