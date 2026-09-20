@@ -208,7 +208,7 @@ iconview.view.cell {
 infobar {
   padding:2px;
   border: 1px solid @border_dark;
-  border-radius: 1px; }
+  border-radius: 0px; }
 
 /* The Info bar uses the colors and button layout from clippy! */
 

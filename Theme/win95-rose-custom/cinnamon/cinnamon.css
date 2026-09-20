@@ -909,7 +909,7 @@ StScrollBar StButton#hhandle {
 .keyboard-subkeys {
   color: rgb(70, 70, 70);
   padding: 5px;
-  -arrow-border-radius: 4px;
+  -arrow-border-radius: 0px;
   -arrow-background-color: #ffffe1;
   -arrow-border-width: 1px;
   -arrow-border-color: rgba(49, 49, 49, 0.4);
