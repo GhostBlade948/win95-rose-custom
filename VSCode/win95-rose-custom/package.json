@@ -1,0 +1,23 @@
+{
+    "name": "win95-rose-custom",
+    "displayName": "win95-rose-custom",
+    "description": "Windows 95 colours for VS Code, with the dusty rose titlebars of the win95-rose-custom desktop theme.",
+    "version": "1.0.0",
+    "publisher": "local",
+    "license": "CC-BY-SA-4.0",
+    "engines": {
+        "vscode": "^1.70.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "win95-rose-custom",
+                "uiTheme": "vs",
+                "path": "./themes/win95-rose-custom-color-theme.json"
+            }
+        ]
+    }
+}

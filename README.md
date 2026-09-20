@@ -19,7 +19,9 @@ against the upstream repository.
 | `sounds/` | Windows 95 sound theme |
 | `Extras/` | wallpapers and patterns, MS-DOS shell prompt, recolour script, fontconfig snippets, Qt colour scheme |
 | `wallpaper.png` | the desktop wallpaper |
+| `VSCode/` | VS Code colour theme |
 | `apply-settings.sh` | switches Cinnamon to the theme; the install targets run it |
+| `vscode-theme.sh` | installs and selects the VS Code theme; the install targets run it |
 | `system-cursor.sh` | cursor for the login screen and root apps; needs root |
 | `Lightdm/` | login screen theme (needs `lightdm-webkit2-greeter`) |
 
@@ -86,6 +88,32 @@ next install.
 The bold label comes from `.menu-cinnamon-org-applet .applet-label` in
 `Theme/win95-rose-custom/cinnamon/cinnamon.css`. Cinnamon builds that class
 name from the applet's uuid, so the same trick targets any other applet.
+
+## VS Code
+
+VS Code is an Electron application and ignores the GTK theme, so it is matched
+through its own settings instead. `vscode-theme.sh` copies the colour theme in
+`VSCode/win95-rose-custom` to `~/.vscode/extensions`, selects it, and sets
+`"window.titleBarStyle": "native"` so the titlebar and menus are drawn by GTK
+and pick up the rose colours like any other window. Both install targets run it;
+`make install_vscode` and `make uninstall_vscode` do just this part.
+
+The theme is Windows 95 silver chrome — `#c0c0c0` surfaces, `#808080` borders,
+black text — around a white editor, with the titlebar rose used for selections
+and other active elements, and the DOS 16-colour palette in the terminal. Its
+accent colours must stay in step with the four in `gtk-3.0/gtk.css`.
+
+Only `workbench.colorTheme` and `window.titleBarStyle` are written to
+`~/.config/Code/User/settings.json`; the previous file is kept as `.bak` and
+`--reset` puts just those two keys back, dropping them if they were not there
+before. A settings file containing comments or trailing commas is left alone
+with a message, since those are not valid JSON.
+
+VS Code must be restarted, or the window reloaded, before the theme appears.
+The real Windows 95 look also wants raised bevels on buttons and scrollbars,
+which no colour theme can do — that needs an extension that patches VS Code's
+own files, at the cost of a corrupt-installation warning on every launch and a
+reinstall after every update. This theme does not go there.
 
 ## GTK4 and libadwaita applications
 

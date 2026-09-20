@@ -23,8 +23,10 @@ USERBKGDS  = $(HOME)/.local/share/backgrounds
 
 WALLPAPER  = $(APPNAME).png
 APPLY      = sh $(SRCDIR)/apply-settings.sh
+VSCODE     = sh $(SRCDIR)/vscode-theme.sh
 
-.PHONY: all install install_user uninstall uninstall_user install_system_cursor apply_sudo_user list
+.PHONY: all install install_user uninstall uninstall_user install_system_cursor \
+	apply_sudo_user install_vscode uninstall_vscode list
 
 all:
 	@echo "targets: install (system, needs root), install_user, uninstall, uninstall_user"
@@ -78,6 +80,7 @@ apply_sudo_user:
 ifeq ($(DESTDIR),)
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != root ]; then \
 		sudo -H -u "$$SUDO_USER" $(APPLY) $(THEMESDIR)/$(THEMENAME) $(BKGDSDIR)/wallpapers/$(WALLPAPER); \
+		sudo -H -u "$$SUDO_USER" $(VSCODE); \
 	else \
 		echo "Installed. Run 'sh apply-settings.sh $(THEMESDIR)/$(THEMENAME) $(BKGDSDIR)/wallpapers/$(WALLPAPER)' as your own user to switch to it."; \
 	fi
@@ -108,9 +111,19 @@ install_user:
 	-gtk-update-icon-cache -f -t $(USERICONS)/Chicago95
 	-fc-cache -f $(USERFONTS)
 	@$(APPLY) $(USERTHEMES)/$(THEMENAME) $(USERBKGDS)/$(WALLPAPER)
+	@$(VSCODE)
+
+# VS Code keeps its extensions and settings under $(HOME) whichever way the
+# rest of the theme was installed, so these targets never need root.
+install_vscode:
+	@$(VSCODE)
+
+uninstall_vscode:
+	-@$(VSCODE) --reset
 
 uninstall_user:
 	-@$(APPLY) --reset
+	-@$(VSCODE) --reset
 	rm -rf $(USERBKGDS)/$(WALLPAPER) \
 		$(USERTHEMES)/$(THEMENAME) \
 		$(USERICONS)/Chicago95 $(USERICONS)/Chicago95-tux $(USERICONS)/Chicago95-puffy \
