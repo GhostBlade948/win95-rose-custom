@@ -24,9 +24,12 @@ USERBKGDS  = $(HOME)/.local/share/backgrounds
 WALLPAPER  = $(APPNAME).png
 APPLY      = sh $(SRCDIR)/apply-settings.sh
 VSCODE     = sh $(SRCDIR)/vscode-theme.sh
+DEPS       = sh $(SRCDIR)/install-deps.sh
+SHELLRC    = sh $(SRCDIR)/shell-setup.sh
 
 .PHONY: all install install_user uninstall uninstall_user install_system_cursor \
-	apply_sudo_user install_vscode uninstall_vscode list
+	apply_sudo_user install_vscode uninstall_vscode patch_vscode unpatch_vscode \
+	deps install_shell uninstall_shell list
 
 all:
 	@echo "targets: install (system, needs root), install_user, uninstall, uninstall_user"
@@ -67,7 +70,7 @@ install_backgrounds:
 
 install_doc:
 	install -dm0755 $(DOCDIR)
-	install -m0644 -t $(DOCDIR) $(SRCDIR)/README.md $(SRCDIR)/CREDITS
+	install -m0644 -t $(DOCDIR) $(SRCDIR)/README.md $(SRCDIR)/INSTALL.md $(SRCDIR)/CREDITS
 
 # The login screen and root applications (pkexec, Timeshift) ignore your session
 # settings, so the cursor is set for them separately. Needs the cursors in
@@ -121,6 +124,29 @@ install_vscode:
 uninstall_vscode:
 	-@$(VSCODE) --reset
 
+# Everything the theme needs from the distribution, plus fastfetch. Uses sudo
+# itself where it needs to, so it is not run by the install targets.
+deps:
+	@$(DEPS)
+
+# The MS-DOS prompt, the Windows 95 startup banner and fastfetch, added to
+# ~/.bashrc. Not part of either install target: it edits a file you own and
+# probably have your own things in.
+install_shell:
+	@$(SHELLRC)
+
+uninstall_shell:
+	-@$(SHELLRC) --reset
+
+# Squaring off VS Code's rounded corners means editing its own workbench.html,
+# which belongs to root and is not part of either install target. VS Code will
+# call itself corrupt afterwards, and an update undoes it.
+patch_vscode:
+	sh $(SRCDIR)/vscode-patch.sh
+
+unpatch_vscode:
+	-sh $(SRCDIR)/vscode-patch.sh --reset
+
 uninstall_user:
 	-@$(APPLY) --reset
 	-@$(VSCODE) --reset
@@ -140,4 +166,4 @@ list:
 	@echo "Icons:       Icons/  Cursors/"
 	@echo "Fonts:       Fonts/vga_font"
 	@echo "Sounds:      sounds/Chicago95"
-	@echo "Extras:      Extras/  (backgrounds, DOS prompt, recolour script, fontconfig)"
+	@echo "Extras:      Extras/  (backgrounds, DOS prompt, fastfetch, recolour script, fontconfig)"

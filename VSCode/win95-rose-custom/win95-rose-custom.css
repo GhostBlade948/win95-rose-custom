@@ -1,0 +1,34 @@
+/*
+ * win95-rose-custom: square off VS Code's rounded corners.
+ *
+ * Inlined into VS Code's workbench.html by vscode-patch.sh. See the VS Code
+ * section of the README for what that costs and how to undo it.
+ *
+ * A colour theme cannot do this: VS Code compiles its corner radii in as design
+ * tokens, exposed as CSS variables with no setting behind them. Overriding the
+ * variables catches everything that uses them; the blanket rule after it catches
+ * the places that still hardcode a radius.
+ */
+
+/* The design tokens, with VS Code's defaults noted. */
+:root,
+.monaco-workbench {
+    --vscode-cornerRadius-xSmall: 0px !important;  /* was 2px  */
+    --vscode-cornerRadius-small: 0px !important;   /* was 4px  */
+    --vscode-cornerRadius-medium: 0px !important;  /* was 6px  */
+    --vscode-cornerRadius-large: 0px !important;   /* was 8px  */
+    --vscode-cornerRadius-xLarge: 0px !important;  /* was 12px */
+    --vscode-cornerRadius-circle: 0px !important;  /* was 9999px */
+}
+
+/* Windows 95 had no rounded corners anywhere, so nothing is exempt.
+ *
+ * This is deliberately not scoped to .monaco-workbench. Menus, dropdowns and
+ * hovers are attached to the body outside it, and the classes they use change
+ * between releases, so naming them means chasing them. Several of them also
+ * hardcode a radius instead of using the variables above. */
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}

@@ -54,7 +54,20 @@ python3 - "$reset" "$SETTINGS" "$THEME" <<'PYEOF'
 import json, os, shutil, sys
 
 reset, path, theme = sys.argv[1], sys.argv[2], sys.argv[3]
-wanted = {"workbench.colorTheme": theme, "window.titleBarStyle": "native"}
+wanted = {
+    "workbench.colorTheme": theme,
+    "window.titleBarStyle": "native",
+    # With a native titlebar the menus default to GTK ones, which neither the
+    # colour theme nor the stylesheet can reach, so they keep their rounded
+    # corners. Drawing them in VS Code puts them back under the theme.
+    "window.menuStyle": "custom",
+}
+
+# The stylesheet is copied into the extension directory with everything else,
+# so it is pointed at there rather than at wherever this repository sits.
+# The stylesheet is applied by vscode-patch.sh, not through a setting: VS Code's
+# Content-Security-Policy allows inline styles but not file:// stylesheets, so it
+# has to be inlined into workbench.html rather than linked.
 bak = path + ".bak"
 
 try:

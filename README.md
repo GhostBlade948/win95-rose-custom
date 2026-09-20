@@ -17,15 +17,22 @@ against the upstream repository.
 | `Cursors/` | cursor themes, including the animated hourglass |
 | `Fonts/` | the Perfect DOS VGA fonts |
 | `sounds/` | Windows 95 sound theme |
-| `Extras/` | wallpapers and patterns, MS-DOS shell prompt, recolour script, fontconfig snippets, Qt colour scheme |
+| `Extras/` | wallpapers and patterns, MS-DOS shell prompt, fastfetch config, recolour script, fontconfig snippets, Qt colour scheme |
 | `wallpaper.png` | the desktop wallpaper |
 | `VSCode/` | VS Code colour theme |
+| `install-deps.sh` | installs the packages the theme needs, plus fastfetch |
 | `apply-settings.sh` | switches Cinnamon to the theme; the install targets run it |
+| `shell-setup.sh` | MS-DOS prompt, Windows 95 banner and fastfetch in `~/.bashrc` |
 | `vscode-theme.sh` | installs and selects the VS Code theme; the install targets run it |
+| `vscode-patch.sh` | inlines the VS Code stylesheet into `workbench.html`; needs root |
 | `system-cursor.sh` | cursor for the login screen and root apps; needs root |
 | `Lightdm/` | login screen theme (needs `lightdm-webkit2-greeter`) |
+| `INSTALL.md` | the installation guide |
 
 ## Install
+
+[INSTALL.md](INSTALL.md) is the full guide, including the optional extras, the
+login screen, VS Code and how to undo it all. The short version:
 
 For the current user:
 
@@ -103,17 +110,56 @@ black text — around a white editor, with the titlebar rose used for selections
 and other active elements, and the DOS 16-colour palette in the terminal. Its
 accent colours must stay in step with the four in `gtk-3.0/gtk.css`.
 
-Only `workbench.colorTheme` and `window.titleBarStyle` are written to
-`~/.config/Code/User/settings.json`; the previous file is kept as `.bak` and
-`--reset` puts just those two keys back, dropping them if they were not there
-before. A settings file containing comments or trailing commas is left alone
-with a message, since those are not valid JSON.
+`window.menuStyle` is set to `custom` as well. A native titlebar otherwise means
+native GTK menus, and those are drawn outside VS Code entirely, so neither the
+colour theme nor the stylesheet reaches them and they keep their rounded corners.
+Drawing them in VS Code puts them back under the theme.
+
+Only `workbench.colorTheme`, `window.titleBarStyle` and `window.menuStyle` are
+written to `~/.config/Code/User/settings.json`; the previous file is kept as
+`.bak` and `--reset` puts just those three keys back, dropping them if they were
+not there before. A settings file containing comments or trailing commas is left
+alone with a message, since those are not valid JSON.
 
 VS Code must be restarted, or the window reloaded, before the theme appears.
-The real Windows 95 look also wants raised bevels on buttons and scrollbars,
-which no colour theme can do — that needs an extension that patches VS Code's
-own files, at the cost of a corrupt-installation warning on every launch and a
-reinstall after every update. This theme does not go there.
+
+### Rounded corners
+
+VS Code rounds its own corners, and a colour theme cannot reach them: the radii
+are compiled in as design tokens with no setting behind them. `vscode-patch.sh`
+inlines `VSCode/win95-rose-custom/win95-rose-custom.css` into VS Code's
+`workbench.html`, which sets the six `cornerRadius` variables to zero and squares
+off the places that hardcode a radius:
+
+    sudo make patch_vscode      # add it
+    sudo make unpatch_vscode    # put the original file back
+
+It is inlined rather than linked because `workbench.html`'s Content-Security-Policy
+allows `style-src 'unsafe-inline'` but not `file://` stylesheets. The original is
+kept beside it as `workbench.html.bak`, and running the patch again replaces the
+block rather than stacking another one on it.
+
+Neither install target does this, and it is not something to do lightly:
+
+- **The checksum in `product.json` is updated to match.** VS Code keeps SHA-256
+  hashes of ten core files there and calls itself corrupt when one no longer
+  matches, so the hash for `workbench.html` is corrected as part of the patch.
+  The cost is losing the only automatic signal that this one file has changed.
+  It is not a security boundary in either case: writing `workbench.html` already
+  needs the root access that editing `product.json` needs. Pass
+  `--keep-checksum` to leave `product.json` alone and dismiss the warning in
+  VS Code instead. The original is kept as `product.json.bak`.
+- **A VS Code update reverts both files**, since the package owns them. Run
+  `sudo make patch_vscode` again afterwards.
+- **The patch itself is not tracked here** — only the stylesheet is. The edit
+  lives in the VS Code installation, so it is per machine.
+
+The script edits the file as root rather than making it writable by your user:
+leaving VS Code's startup HTML user-writable would let anything running as you
+change what VS Code loads at launch.
+
+The same stylesheet is where Windows 95 raised bevels for buttons and scrollbars
+would go, which a colour theme also cannot do.
 
 ## GTK4 and libadwaita applications
 

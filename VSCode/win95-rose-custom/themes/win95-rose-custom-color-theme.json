@@ -7,7 +7,10 @@
         "Rose accents come from the desktop theme's titlebar colours and must stay in step",
         "with Theme/win95-rose-custom/gtk-3.0/gtk.css: #a34545 active, #eb98a8 its text,",
         "#997c7c inactive, #262323 inactive text.",
-        "The editor itself is white like Notepad; every surrounding surface is silver."
+        "The editor itself is white like Notepad; every surrounding surface is silver.",
+        "A selected row is #a34545, so list.focusHighlightForeground must not be that",
+        "colour as well or the matched letters vanish into the background; it is the DOS",
+        "palette's yellow, which stays legible against the rose."
     ],
     "colors": {
         "focusBorder": "#a34545",
@@ -106,6 +109,7 @@
         "list.hoverBackground": "#eb98a860",
         "list.hoverForeground": "#000000",
         "list.highlightForeground": "#a34545",
+        "list.focusHighlightForeground": "#ffff00",
         "list.errorForeground": "#800000",
         "list.warningForeground": "#808000",
         "tree.indentGuidesStroke": "#808080",
@@ -137,11 +141,14 @@
         "statusBarItem.errorBackground": "#800000",
         "statusBarItem.errorForeground": "#ffffff",
 
-        "panel.background": "#ffffff",
+        "panel.background": "#c0c0c0",
         "panel.border": "#808080",
         "panelTitle.activeForeground": "#000000",
-        "panelTitle.inactiveForeground": "#808080",
+        "panelTitle.inactiveForeground": "#404040",
         "panelTitle.activeBorder": "#a34545",
+        "panelSection.border": "#808080",
+        "panelSectionHeader.background": "#c0c0c0",
+        "panelSectionHeader.foreground": "#000000",
 
         "menubar.selectionBackground": "#a34545",
         "menubar.selectionForeground": "#ffffff",
@@ -186,6 +193,9 @@
         "quickInput.background": "#c0c0c0",
         "quickInput.foreground": "#000000",
         "quickInputTitle.background": "#a34545",
+        "quickInputList.focusBackground": "#a34545",
+        "quickInputList.focusForeground": "#ffffff",
+        "quickInputList.focusIconForeground": "#ffffff",
         "pickerGroup.foreground": "#a34545",
         "pickerGroup.border": "#808080",
 
