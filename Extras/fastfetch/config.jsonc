@@ -3,29 +3,29 @@
 // Installed to ~/.config/fastfetch/config.jsonc by shell-setup.sh, which keeps
 // any config you already had as config.jsonc.bak.
 //
-// "Windows 95" is one of fastfetch's built-in logos, so there is no art file to
-// ship; `fastfetch --list-logos` shows the rest. Its colour slots are not in
-// reading order, and slot 2 is unused:
-//   6  the outline and frame
-//   5  top-left quadrant        4  top-right quadrant
-//   1  bottom-left quadrant     3  bottom-right quadrant
-// They are remapped here to the theme's palette, so the flag keeps its shape
-// but reads as rose tints rather than the original primaries. The frame must
-// not be left at its original black, which is invisible on a dark terminal.
+// "Windows" is one of fastfetch's built-in logos and is the same art neofetch
+// draws for Windows: the stylised flag, four quadrants, one colour slot each.
+// `fastfetch --list-logos` shows the rest, including "Windows 95", which is the
+// blockier flag with an outline.
+//
+//   1  top-left       2  top-right
+//   4  bottom-left    3  bottom-right
+//
+// They are remapped to the theme's palette so the flag reads as rose tints
+// rather than the original primaries.
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "source": "Windows 95",
+        "source": "Windows",
         "color": {
-            "6": "#c0c0c0",
-            "5": "#a34545",
-            "4": "#eb98a8",
-            "1": "#997c7c",
-            "3": "#808080"
+            "1": "#a34545",
+            "2": "#eb98a8",
+            "3": "#808080",
+            "4": "#997c7c"
         },
         "padding": {
             "top": 1,
-            "right": 3
+            "right": 2
         }
     },
     "display": {
@@ -37,6 +37,11 @@
             "title": "#eb98a8"
         }
     },
+    // The logo is 34 columns wide, so anything long on the right wraps back to
+    // column 0 and the two columns stop lining up. The keys are kept short and
+    // the wordier modules are given a format that drops what the default
+    // spells out: the monitor's name, size and orientation, and the window
+    // manager theme, which is the same name the Theme line already gives.
     "modules": [
         "title",
         "separator",
@@ -45,15 +50,31 @@
         "uptime",
         "packages",
         "shell",
-        "display",
-        "de",
-        "wm",
-        "wmtheme",
+        {
+            "type": "display",
+            "key": "Resolution",
+            "format": "{width}x{height} @ {refresh-rate} Hz"
+        },
+        {
+            "type": "de",
+            "key": "DE"
+        },
+        {
+            "type": "wm",
+            "key": "WM"
+        },
         "theme",
         "icons",
         "terminal",
-        "cpu",
-        "gpu",
+        {
+            "type": "cpu",
+            "format": "{name} ({cores-logical})"
+        },
+        {
+            "type": "gpu",
+            "key": "GPU",
+            "format": "{name}"
+        },
         "memory"
     ]
 }
