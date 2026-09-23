@@ -27,10 +27,14 @@ VSCODE     = sh $(SRCDIR)/vscode-theme.sh
 DEPS       = sh $(SRCDIR)/install-deps.sh
 SHELLRC    = sh $(SRCDIR)/shell-setup.sh
 WINE       = sh $(SRCDIR)/wine-colors.sh
+PLYMOUTH   = sh $(SRCDIR)/install-plymouth.sh
+LOGINSOUND = sh $(SRCDIR)/login-sound.sh
 
 .PHONY: all install install_user uninstall uninstall_user install_system_cursor \
 	apply_sudo_user install_vscode uninstall_vscode patch_vscode unpatch_vscode \
-	deps install_shell uninstall_shell install_wine_colors uninstall_wine_colors list
+	deps install_shell uninstall_shell install_wine_colors uninstall_wine_colors \
+	install_plymouth uninstall_plymouth preview_plymouth \
+	install_login_sound uninstall_login_sound list
 
 all:
 	@echo "targets: install (system, needs root), install_user, uninstall, uninstall_user"
@@ -138,6 +142,27 @@ install_shell:
 
 uninstall_shell:
 	-@$(SHELLRC) --reset
+
+# The Windows 95 login and logout sounds. Kept out of the install targets: the
+# copying needs root, and replacing the sounds a desktop makes is a bigger
+# change than a theme should apply without being asked.
+install_login_sound:
+	$(LOGINSOUND)
+
+uninstall_login_sound:
+	-$(LOGINSOUND) --reset
+
+# The boot splash. Kept out of the install targets: it needs root, rebuilds the
+# initramfs, only shows up after a reboot, and wants a splash.png that this
+# repository does not ship.
+install_plymouth:
+	$(PLYMOUTH)
+
+uninstall_plymouth:
+	-$(PLYMOUTH) --reset
+
+preview_plymouth:
+	@$(PLYMOUTH) --preview
 
 # Wine draws its own titlebars and widgets, so games under Proton keep Wine's
 # default blue whatever the desktop theme is. This sets the colours in each

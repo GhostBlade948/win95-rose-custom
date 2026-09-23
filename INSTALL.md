@@ -194,6 +194,26 @@ Know what you are getting into:
 
 None of these are installed automatically.
 
+### The login and logout sounds
+
+    sudo make install_login_sound      # use them
+    sudo make uninstall_login_sound    # put Mint's back
+
+This copies the Windows 95 sounds to `/usr/share/mint-artwork/sounds`, which is
+where Cinnamon's sound picker opens, and points *Starting Cinnamon* and
+*Leaving Cinnamon* at them in System Settings > Sound > Sounds.
+
+They are copied under their own names rather than replacing Mint's `login.oga`
+and `logout.ogg`, which belong to the `mint-artwork` package and would be
+restored by its next update. `sh login-sound.sh --show` prints what is set,
+`--no-select` copies the files without changing a setting, and the uninstall
+target only restores Mint's sounds where these are still the ones selected.
+
+The copying needs root but the settings belong to you, so when the script is
+run with `sudo` or `pkexec` it hands the `gsettings` writes back to the user who
+invoked it. Running the two commands as root by hand would configure root's
+desktop and leave yours untouched.
+
 ### Wine and Proton games
 
 A game running under Wine or Proton keeps Wine's own bright blue titlebar

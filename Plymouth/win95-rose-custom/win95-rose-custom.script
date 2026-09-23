@@ -1,0 +1,85 @@
+# win95-rose-custom boot splash.
+#
+# The splash image scaled to cover the screen, and nothing else: no progress
+# bar, no throbber. Plymouth is happy without a refresh callback.
+#
+# splash.png is not shipped with the theme. install-plymouth.sh copies one in;
+# without it the screen is the sky gradient alone, which is why the background
+# colours are set before anything is drawn.
+
+# ---------------------------------------------------------------- background
+# The rose sky the splash sits on, as a fallback and as the colour behind the
+# image while it loads. Sampled from the top and bottom of splash.png so the
+# two do not disagree during the moment before it is drawn. Plymouth takes
+# these as fractions of full intensity.
+Window.SetBackgroundTopColor(0.91, 0.78, 0.80);
+Window.SetBackgroundBottomColor(0.87, 0.60, 0.64);
+
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+# -------------------------------------------------------------------- splash
+# Scaled to cover rather than fit: a 16:9 image on a 16:10 screen would
+# otherwise leave bands of background above and below it.
+splash_image = Image("splash.png");
+if (splash_image) {
+    splash_width = splash_image.GetWidth();
+    splash_height = splash_image.GetHeight();
+
+    scale_x = screen_width / splash_width;
+    scale_y = screen_height / splash_height;
+    scale = scale_x;
+    if (scale_y > scale_x) {
+        scale = scale_y;
+    }
+
+    scaled_width = splash_width * scale;
+    scaled_height = splash_height * scale;
+
+    splash_sprite = Sprite(splash_image.Scale(scaled_width, scaled_height));
+    splash_sprite.SetX((screen_width - scaled_width) / 2);
+    splash_sprite.SetY((screen_height - scaled_height) / 2);
+    splash_sprite.SetZ(0);
+}
+
+# ------------------------------------------------------------------- prompts
+# Plymouth asks for a password when the disk is encrypted. Without these the
+# prompt is never drawn and the machine looks like it has hung.
+prompt_sprite = Sprite();
+
+fun display_password_callback (prompt, bullets) {
+    text = prompt;
+    if (!text) {
+        text = "Password:";
+    }
+    stars = "";
+    for (i = 0; i < bullets; i++) {
+        stars += "*";
+    }
+
+    prompt_image = Image.Text(text + " " + stars, 1, 1, 1, 1);
+    prompt_sprite.SetImage(prompt_image);
+    prompt_sprite.SetX((screen_width - prompt_image.GetWidth()) / 2);
+    prompt_sprite.SetY(screen_height * 0.9);
+    prompt_sprite.SetZ(10);
+}
+
+fun display_normal_callback () {
+    prompt_sprite.SetImage(Image.Text("", 1, 1, 1, 1));
+}
+
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+
+# ------------------------------------------------------------------ messages
+message_sprite = Sprite();
+
+fun message_callback (text) {
+    message_image = Image.Text(text, 1, 1, 1, 1);
+    message_sprite.SetImage(message_image);
+    message_sprite.SetX((screen_width - message_image.GetWidth()) / 2);
+    message_sprite.SetY(screen_height * 0.95);
+    message_sprite.SetZ(10);
+}
+
+Plymouth.SetMessageFunction(message_callback);

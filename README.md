@@ -36,7 +36,10 @@ above them.
 | `vscode-theme.sh` | installs and selects the VS Code theme; the install targets run it |
 | `vscode-patch.sh` | inlines the VS Code stylesheet into `workbench.html`; needs root |
 | `system-cursor.sh` | cursor for the login screen and root apps; needs root |
+| `install-plymouth.sh` | the Windows 95 boot splash; needs root |
+| `Plymouth/` | boot splash theme |
 | `wine-colors.sh` | the theme's colours for Wine and Proton games |
+| `login-sound.sh` | the Windows 95 login and logout sounds; needs root |
 | `Lightdm/` | login screen theme (needs `lightdm-webkit2-greeter`) |
 | `INSTALL.md` | the installation guide |
 
@@ -56,8 +59,8 @@ System-wide:
 Either one also switches your desktop over: the Cinnamon theme, window borders,
 Chicago95 icons, the white cursor, `wallpaper.png` as the background, the Start
 button described below, and the GTK4 stylesheet described after it. The sound
-theme is left as it is. Log out and
-back in (or restart Cinnamon with **Ctrl+Alt+Esc**) if anything looks half
+theme is installed but not switched on; `sudo make install_login_sound` uses the
+Windows 95 login and logout sounds. Log out and back in (or restart Cinnamon with **Ctrl+Alt+Esc**) if anything looks half
 applied, and restart open applications.
 
 `make uninstall_user` removes the files and puts the Cinnamon defaults back.

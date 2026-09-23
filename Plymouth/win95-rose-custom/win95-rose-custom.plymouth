@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=win95-rose-custom
+Description=A Windows 95 boot splash for the win95-rose-custom desktop theme.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/win95-rose-custom
+ScriptFile=/usr/share/plymouth/themes/win95-rose-custom/win95-rose-custom.script
