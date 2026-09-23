@@ -8,6 +8,16 @@ contributors, licensed CC-BY-SA 4.0. See `CREDITS` for the original authors.
 This copy is trimmed to Cinnamon and carries local changes; it is not tracked
 against the upstream repository.
 
+![The desktop with the Start menu open](screenshots/desktop-start-menu.png)
+
+The panel, the Start button and the menu, with the rose titlebars on the window
+above them.
+
+![A terminal showing the startup banner and fastfetch](screenshots/terminal.png)
+
+`make install_shell` gives a new terminal the Windows 95 startup banner, a
+`C:\` prompt and fastfetch with the flag recoloured to the theme.
+
 ## What's in here
 
 | Path | Contents |
